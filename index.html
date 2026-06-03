@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Peiyu Hu — Applied AI Safety & Governance Research</title>
+<title>Peiyu Hu — Applied AI Safety &amp; Governance Research</title>
 <meta name="description" content="Peiyu Hu — applied researcher in empirical AI safety and governance. Text-to-image interpretability, model evaluation, experimental design." />
 <style>
   :root {
@@ -18,7 +18,7 @@
   html { scroll-behavior: smooth; }
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
     color: var(--ink);
     background: var(--bg);
     line-height: 1.6;
@@ -59,11 +59,22 @@
   /* Nav */
   nav { position: sticky; top: 0; background: rgba(255,255,255,0.92);
         backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); z-index: 10; }
-  nav .wrap { display: flex; gap: 18px; padding-top: 12px; padding-bottom: 12px;
+  nav .wrap { display: flex; align-items: center; gap: 18px; padding-top: 12px; padding-bottom: 12px;
               font-size: 0.85rem; overflow-x: auto; }
   nav a { color: var(--muted); }
+  .lang-toggle {
+    margin-left: auto; flex-shrink: 0; border: 1px solid var(--line);
+    background: #fff; color: var(--accent); font: inherit; font-size: 0.8rem;
+    padding: 4px 12px; border-radius: 14px; cursor: pointer;
+  }
+  .lang-toggle:hover { border-color: var(--accent); }
 
   footer { padding: 40px 0 60px; color: var(--muted); font-size: 0.85rem; text-align: center; }
+
+  /* Bilingual toggle */
+  [data-lang] { display: none; }
+  body.en [data-lang="en"] { display: revert; }
+  body.zh [data-lang="zh"] { display: revert; }
 
   @media (max-width: 600px) {
     header { padding-top: 40px; }
@@ -75,27 +86,32 @@
   }
 </style>
 </head>
-<body>
+<body class="en">
 
 <nav>
   <div class="wrap">
-    <a href="#about">About</a>
-    <a href="#research">Research</a>
-    <a href="#engineering">Engineering</a>
-    <a href="#experience">Experience</a>
-    <a href="#education">Education</a>
-    <a href="#skills">Skills</a>
+    <a href="#about"><span data-lang="en">About</span><span data-lang="zh">简介</span></a>
+    <a href="#research"><span data-lang="en">Research</span><span data-lang="zh">研究</span></a>
+    <a href="#engineering"><span data-lang="en">Engineering</span><span data-lang="zh">工程</span></a>
+    <a href="#experience"><span data-lang="en">Experience</span><span data-lang="zh">经历</span></a>
+    <a href="#education"><span data-lang="en">Education</span><span data-lang="zh">教育</span></a>
+    <a href="#skills"><span data-lang="en">Skills</span><span data-lang="zh">技能</span></a>
+    <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language"></button>
   </div>
 </nav>
 
 <header>
   <div class="wrap">
-    <h1>Peiyu Hu</h1>
-    <p class="tagline">Applied researcher in <strong>empirical AI safety &amp; governance</strong> — how alignment/safety constraints shape model behaviour, model evaluation, experimental design.</p>
+    <h1><span data-lang="en">Peiyu Hu</span><span data-lang="zh">胡佩瑜（Peiyu Hu）</span></h1>
+    <p class="tagline">
+      <span data-lang="en">Applied researcher in <strong>empirical AI safety &amp; governance</strong> — how alignment/safety constraints shape model behaviour, model evaluation, experimental design.</span>
+      <span data-lang="zh">应用型研究者,方向为<strong>实证 AI 安全与治理</strong> — 对齐/安全约束如何影响模型行为、模型评估、实验设计。</span>
+    </p>
     <div class="contact">
       <!-- TODO: a personal phone number on a public page invites spam — left out by default. Uncomment if you want it.
       <span>+86 176 8372 6996</span><span class="sep">·</span> -->
-      <span>Relocating to Singapore · July 2026</span>
+      <span data-lang="en">Relocating to Singapore · July 2026</span>
+      <span data-lang="zh">中国 · 2026 年 7 月迁往新加坡</span>
       <span class="sep">·</span>
       <a href="mailto:peiyuhu0713@gmail.com">peiyuhu0713@gmail.com</a>
       <span class="sep">·</span>
@@ -108,24 +124,35 @@
 
 <section id="about">
   <div class="wrap">
-    <h2>Profile</h2>
-    <p>Applied researcher working where machine learning meets the social and ethical questions it raises. I design controlled experiments and build end-to-end ML/DL pipelines — from data collection and preprocessing, through statistical analysis and proof-of-concept modelling, to validation and reporting — in Python and PyTorch, with attention to reproducibility and pre-registration.</p>
-    <p>My current work empirically studies how a generative model's safety/alignment constraints reshape its outputs, sitting directly within empirical AI safety and governance. I pair hands-on ML with social-science and data-ethics training (Edinburgh MSc), turn open research questions into measurable, testable hypotheses, and communicate results clearly to non-technical audiences. Working languages: English and Mandarin.</p>
+    <h2><span data-lang="en">Profile</span><span data-lang="zh">个人简介</span></h2>
+    <p data-lang="en">Applied researcher working where machine learning meets the social and ethical questions it raises. I design controlled experiments and build end-to-end ML/DL pipelines — from data collection and preprocessing, through statistical analysis and proof-of-concept modelling, to validation and reporting — in Python and PyTorch, with attention to reproducibility and pre-registration.</p>
+    <p data-lang="en">My current work empirically studies how a generative model's safety/alignment constraints reshape its outputs, sitting directly within empirical AI safety and governance. I pair hands-on ML with social-science and data-ethics training (Edinburgh MSc), turn open research questions into measurable, testable hypotheses, and communicate results clearly to non-technical audiences. Working languages: English and Mandarin.</p>
+    <p data-lang="zh">应用型研究者,工作位于机器学习与其引发的社会、伦理问题的交叉处。我设计受控实验并搭建端到端的 ML/DL 流水线——从数据采集、预处理,到统计分析与概念验证（proof-of-concept）建模,再到验证与汇报——使用 Python 与 PyTorch,注重可复现性与预注册。</p>
+    <p data-lang="zh">当前研究以实证方式考察生成式模型的安全/对齐约束如何重塑其输出,直接落在实证 AI 安全与治理的范畴。兼具动手 ML 能力与社会科学、数据伦理训练（爱丁堡 MSc）,擅长把开放式研究问题转化为可测量、可检验的假设,并向非技术受众清晰传达结果。工作语言：英语与普通话。</p>
   </div>
 </section>
 
 <section id="research">
   <div class="wrap">
-    <h2>Research</h2>
+    <h2><span data-lang="en">Research</span><span data-lang="zh">研究项目</span></h2>
     <div class="entry">
-      <h3>Generative AI Intervention &amp; Digital Imagination</h3>
-      <p class="meta">Independent Researcher (OSF-preregistered) · Mar 2026 – Present · <a href="https://github.com/peiyuhu0713-ctrl" target="_blank" rel="noopener">github.com/peiyuhu0713-ctrl</a></p>
+      <h3><span data-lang="en">Generative AI Intervention &amp; Digital Imagination</span><span data-lang="zh">生成式 AI 干预与数字想象力</span></h3>
+      <p class="meta">
+        <span data-lang="en">Independent Researcher (OSF-preregistered) · Mar 2026 – Present · <a href="https://github.com/peiyuhu0713-ctrl" target="_blank" rel="noopener">github.com/peiyuhu0713-ctrl</a></span>
+        <span data-lang="zh">独立研究员（OSF 预注册）· 2026 年 3 月至今 · <a href="https://github.com/peiyuhu0713-ctrl" target="_blank" rel="noopener">github.com/peiyuhu0713-ctrl</a></span>
+      </p>
       <ul>
-        <li>Built a quantitative framework to test whether generative-model safety/alignment constraints are monotonically beneficial, operationalising creative outcomes as measurable constructs — semantic alignment, visual diversity, <strong>repair cost</strong> (prompt iterations needed to reach intent), a <strong>validity threshold</strong> for acceptable output, and <strong>diversity cost</strong> (representational range lost as constraints tighten).</li>
-        <li>Designed three pilot rounds and a pre-registered main experiment over SDXL constraint conditions, prompt-stratified test sets, and placebo controls; generated and evaluated 2,500+ images, identifying a non-monotonic <strong>inverted-U relationship</strong> between constraint strength and creative diversity, peaking near the model's default setting.</li>
-        <li>Built the full Python / PyTorch / Hugging Face pipeline on cloud GPU (AutoDL): automated generation, a quality-control gate, scoring with a 4-bit-quantised LLaVA-1.5-7B, and CLIP / LPIPS metric computation.</li>
-        <li>Ran stratified robustness checks and attention ablations via PyTorch forward hooks against a placebo-module control, to separate attention-level effects from prompt-level differences.</li>
-        <li>Designed a qualitative arm — semi-structured creator interviews — to map model <strong>boundaries</strong> (soft / cost / trade-off / persistent) and how repair burden and cultural-representation gaps fall unequally across users.</li>
+        <li data-lang="en">Built a quantitative framework to test whether generative-model safety/alignment constraints are monotonically beneficial, operationalising creative outcomes as measurable constructs — semantic alignment, visual diversity, <strong>repair cost</strong> (prompt iterations needed to reach intent), a <strong>validity threshold</strong> for acceptable output, and <strong>diversity cost</strong> (representational range lost as constraints tighten).</li>
+        <li data-lang="en">Designed three pilot rounds and a pre-registered main experiment over SDXL constraint conditions, prompt-stratified test sets, and placebo controls; generated and evaluated 2,500+ images, identifying a non-monotonic <strong>inverted-U relationship</strong> between constraint strength and creative diversity, peaking near the model's default setting.</li>
+        <li data-lang="en">Built the full Python / PyTorch / Hugging Face pipeline on cloud GPU (AutoDL): automated generation, a quality-control gate, scoring with a 4-bit-quantised LLaVA-1.5-7B, and CLIP / LPIPS metric computation.</li>
+        <li data-lang="en">Ran stratified robustness checks and attention ablations via PyTorch forward hooks against a placebo-module control, to separate attention-level effects from prompt-level differences.</li>
+        <li data-lang="en">Designed a qualitative arm — semi-structured creator interviews — to map model <strong>boundaries</strong> (soft / cost / trade-off / persistent) and how repair burden and cultural-representation gaps fall unequally across users.</li>
+
+        <li data-lang="zh">搭建可量化的研究框架,检验生成式模型的安全/对齐约束是否"越严越好",将创作结果操作化为可测量的构念——语义对齐、视觉多样性、<strong>修复成本</strong>（达到创作意图所需的提示词迭代次数）、可接受输出的<strong>有效性阈值</strong>,以及<strong>多样性代价</strong>（约束收紧时损失的表征范围）。</li>
+        <li data-lang="zh">设计三轮预实验与一次预注册的正式实验,覆盖 SDXL 多组约束条件、分层提示词测试集与安慰剂对照;生成并评估 2,500+ 张图像,发现约束强度与创作多样性之间存在<strong>非单调的倒 U 型关系</strong>,峰值出现在接近模型默认状态处。</li>
+        <li data-lang="zh">在云端 GPU（AutoDL）上搭建完整的 Python / PyTorch / Hugging Face 流水线：自动化生成、质量控制门、用 4-bit 量化的 LLaVA-1.5-7B 打分、计算 CLIP / LPIPS 指标。</li>
+        <li data-lang="zh">通过 PyTorch forward hooks 配合安慰剂模块对照,做分层稳健性检验与注意力消融,以区分注意力层面效应与提示词层面差异。</li>
+        <li data-lang="zh">设计定性研究臂——对创作者的半结构化访谈——绘制模型<strong>边界地图</strong>（软边界 / 成本边界 / 权衡边界 / 持久边界）,考察修复负担与文化表征落差如何在不同用户间不均衡地分布。</li>
       </ul>
     </div>
   </div>
@@ -133,14 +160,18 @@
 
 <section id="engineering">
   <div class="wrap">
-    <h2>Engineering</h2>
+    <h2><span data-lang="en">Engineering</span><span data-lang="zh">工程项目</span></h2>
     <div class="entry">
-      <h3>Production-Line Defect Detection — Tabular ML Pipeline with CI/CD</h3>
+      <h3><span data-lang="en">Production-Line Defect Detection — Tabular ML Pipeline with CI/CD</span><span data-lang="zh">产线缺陷检测 — 带 CI/CD 的表格数据 ML 流水线</span></h3>
       <p class="meta"><a href="https://github.com/peiyuhu0713-ctrl/production-line-defect-detection" target="_blank" rel="noopener">github.com/peiyuhu0713-ctrl/production-line-defect-detection</a></p>
       <ul>
-        <li>Built a small, modular, <strong>unit-tested</strong> scikit-learn pipeline that predicts quality-control failures from imbalanced sensor measurements, framed on a public manufacturing-sensor dataset (synthetic sample data included; structured to drop in the real dataset behind the same interface).</li>
-        <li>Engineered with software-architecture and reproducibility in mind: a src/ package with separate data/model/evaluation modules, editable install, and config centralised in pyproject.toml.</li>
-        <li>Set up an automated <strong>GitHub Actions CI pipeline</strong> that runs linting (ruff) and the test suite (pytest) on every push; evaluated with ROC-AUC / average precision (not accuracy) given rare defects.</li>
+        <li data-lang="en">Built a small, modular, <strong>unit-tested</strong> scikit-learn pipeline that predicts quality-control failures from imbalanced sensor measurements, framed on a public manufacturing-sensor dataset (synthetic sample data included; structured to drop in the real dataset behind the same interface).</li>
+        <li data-lang="en">Engineered with software-architecture and reproducibility in mind: a src/ package with separate data/model/evaluation modules, editable install, and config centralised in pyproject.toml.</li>
+        <li data-lang="en">Set up an automated <strong>GitHub Actions CI pipeline</strong> that runs linting (ruff) and the test suite (pytest) on every push; evaluated with ROC-AUC / average precision (not accuracy) given rare defects.</li>
+
+        <li data-lang="zh">构建一个小而模块化、<strong>带单元测试</strong>的 scikit-learn 流水线,从不平衡的传感器测量数据预测质检失败,基于一个公开的制造业传感器数据集设定（含合成样本数据;结构上可在同一接口后接入真实数据集）。</li>
+        <li data-lang="zh">以软件架构与可复现性为出发点设计：src/ 包内分离 data/model/evaluation 模块,可编辑安装,配置集中在 pyproject.toml。</li>
+        <li data-lang="zh">搭建自动化的 <strong>GitHub Actions CI 流水线</strong>,每次 push 自动运行代码检查（ruff）与测试（pytest）;鉴于缺陷稀有,采用 ROC-AUC / 平均精度（而非准确率）评估。</li>
       </ul>
     </div>
   </div>
@@ -148,33 +179,42 @@
 
 <section id="experience">
   <div class="wrap">
-    <h2>Experience</h2>
+    <h2><span data-lang="en">Experience</span><span data-lang="zh">工作经历</span></h2>
 
     <div class="entry">
-      <h3>Ovios — TikTok Creator Business Development</h3>
-      <p class="meta">May 2025 – Oct 2025 · Remote</p>
+      <h3><span data-lang="en">Ovios — TikTok Creator Business Development</span><span data-lang="zh">Ovios 奥维斯科技集团 — TikTok 达人 BD / 内容增长</span></h3>
+      <p class="meta"><span data-lang="en">May 2025 – Oct 2025 · Remote</span><span data-lang="zh">2025 年 5 月 – 2025 年 10 月 · 远程</span></p>
       <ul>
-        <li>Built a data-driven screening process over 2,000+ candidates and optimised creator allocation under a hard budget constraint (≤10% of GMV), achieving up to USD 30K weekly GMV and 500K+ likes on a single TikTok post.</li>
+        <li data-lang="en">Built a data-driven screening process over 2,000+ candidates and optimised creator allocation under a hard budget constraint (≤10% of GMV), achieving up to USD 30K weekly GMV and 500K+ likes on a single TikTok post.</li>
+        <li data-lang="zh">面向美区家居消费场景,从 2,000+ 候选达人中建立数据驱动的筛选流程,在合作成本占 GMV ≤10% 的硬约束下优化达人组合,最高实现单周 GMV 3 万美金、单条 TikTok 内容点赞 50w+。</li>
       </ul>
     </div>
 
     <div class="entry">
-      <h3>Kantar — Research Executive</h3>
-      <p class="meta">Sep 2024 – Feb 2025 · Shanghai</p>
+      <h3><span data-lang="en">Kantar — Research Executive</span><span data-lang="zh">Kantar 凯度 — 研究执行（Research Executive）</span></h3>
+      <p class="meta"><span data-lang="en">Sep 2024 – Feb 2025 · Shanghai</span><span data-lang="zh">2024 年 9 月 – 2025 年 2 月 · 上海</span></p>
       <ul>
-        <li>Ran brand-health tracking and advertising-effectiveness studies for global brands (Unilever, Kohler, Dyson, The North Face), producing standardised English reports.</li>
-        <li>Delivered consumer insights across 10+ dimensions (awareness, purchase, recommendation, brand imagery), including Kohler's 2024 brand-health tracking and touchpoint-channel analysis.</li>
-        <li>Coordinated programming resources and cross-functional workflows for The North Face project — questionnaire programming, testing, and revisions — to ensure on-time launch.</li>
+        <li data-lang="en">Ran brand-health tracking and advertising-effectiveness studies for global brands (Unilever, Kohler, Dyson, The North Face), producing standardised English reports.</li>
+        <li data-lang="en">Delivered consumer insights across 10+ dimensions (awareness, purchase, recommendation, brand imagery), including Kohler's 2024 brand-health tracking and touchpoint-channel analysis.</li>
+        <li data-lang="en">Coordinated programming resources and cross-functional workflows for The North Face project — questionnaire programming, testing, and revisions — to ensure on-time launch.</li>
+
+        <li data-lang="zh">服务联合利华、科勒、戴森、北面等全球品牌,开展品牌健康度追踪与广告效果评估,输出标准化英文报告。</li>
+        <li data-lang="zh">围绕认知、购买、推荐、品牌形象等 10+ 维度输出消费者洞察,包括科勒 2024 年品牌健康追踪与触点渠道分析。</li>
+        <li data-lang="zh">协调北面项目的编程资源与跨职能分工——问卷程序开发、测试、修改——保障按时上线。</li>
       </ul>
     </div>
 
     <div class="entry">
-      <h3>Publicis Sapient — Data Strategy Intern (Huawei Overseas / Alibaba Cloud)</h3>
-      <p class="meta">Jan 2022 – May 2022 · Shanghai</p>
+      <h3><span data-lang="en">Publicis Sapient — Data Strategy Intern (Huawei Overseas / Alibaba Cloud)</span><span data-lang="zh">阳狮集团 Publicis Sapient — 数据策略实习生（华为出海 / 阿里云）</span></h3>
+      <p class="meta"><span data-lang="en">Jan 2022 – May 2022 · Shanghai</span><span data-lang="zh">2022 年 1 月 – 2022 年 5 月 · 上海</span></p>
       <ul>
-        <li>Monitored Huawei's overseas social-media ecosystem across five platforms (Facebook, YouTube and others): follower growth, engagement metrics, comment sentiment, and influencer collaborations.</li>
-        <li>Built 10+ dimension visualisation dashboards and event reviews (e.g. MWC), locating communication pain points and lifting post engagement by ~40%.</li>
-        <li>Independently benchmarked Alibaba Cloud competitors (AWS, Google Cloud and others), reviewing 70+ competitor posts monthly for content themes and high-performing patterns.</li>
+        <li data-lang="en">Monitored Huawei's overseas social-media ecosystem across five platforms (Facebook, YouTube and others): follower growth, engagement metrics, comment sentiment, and influencer collaborations.</li>
+        <li data-lang="en">Built 10+ dimension visualisation dashboards and event reviews (e.g. MWC), locating communication pain points and lifting post engagement by ~40%.</li>
+        <li data-lang="en">Independently benchmarked Alibaba Cloud competitors (AWS, Google Cloud and others), reviewing 70+ competitor posts monthly for content themes and high-performing patterns.</li>
+
+        <li data-lang="zh">监测华为海外社媒矩阵,覆盖 Facebook、YouTube 等五大平台的粉丝增长、互动指标、评论情绪与 KOL 联动。</li>
+        <li data-lang="zh">搭建 10+ 维度可视化看板与活动复盘（如 MWC 世界移动通信大会）,定位传播痛点,推动帖文互动率提升约 40%。</li>
+        <li data-lang="zh">独立完成阿里云竞品对标分析（AWS、Google Cloud 等）,月度覆盖 70+ 竞品帖文,拆解内容主题与爆款特征。</li>
       </ul>
     </div>
   </div>
@@ -182,23 +222,28 @@
 
 <section id="education">
   <div class="wrap">
-    <h2>Education</h2>
+    <h2><span data-lang="en">Education</span><span data-lang="zh">教育背景</span></h2>
 
     <div class="entry">
-      <h3>The University of Edinburgh — MSc Data, Inequality and Society (Merit)</h3>
-      <p class="meta">Sep 2022 – Dec 2023 · Edinburgh, UK</p>
+      <h3><span data-lang="en">The University of Edinburgh — MSc Data, Inequality and Society (Merit)</span><span data-lang="zh">爱丁堡大学 — 理学硕士 数据、不平等与社会（Merit 良好）</span></h3>
+      <p class="meta"><span data-lang="en">Sep 2022 – Dec 2023 · Edinburgh, UK</span><span data-lang="zh">2022 年 9 月 – 2023 年 12 月 · 英国爱丁堡</span></p>
       <ul>
-        <li>Coursework: Social Data Science; Ethical Data Futures; Migration and Forced Displacement in the Digital Age.</li>
-        <li>Dissertation: comparative content analysis of gender inequality in YouTube comments — multi-level node coding of 1,200 comments in NVivo.</li>
-        <li>Quantitative project: Reddit API / PRAW data collection from r/science; tested evidence- vs emotion-based argument types against perceived persuasiveness (VADER sentiment, Mann–Whitney U); network analysis in Gephi.</li>
+        <li data-lang="en">Coursework: Social Data Science; Ethical Data Futures; Migration and Forced Displacement in the Digital Age.</li>
+        <li data-lang="en">Dissertation: comparative content analysis of gender inequality in YouTube comments — multi-level node coding of 1,200 comments in NVivo.</li>
+        <li data-lang="en">Quantitative project: Reddit API / PRAW data collection from r/science; tested evidence- vs emotion-based argument types against perceived persuasiveness (VADER sentiment, Mann–Whitney U); network analysis in Gephi.</li>
+
+        <li data-lang="zh">课程：社会数据科学;伦理数据未来;数字时代的移民与被迫迁徙。</li>
+        <li data-lang="zh">硕士论文：YouTube 评论中性别不平等的比较性内容分析——在 NVivo 中对 1,200 条评论做多层级节点编码。</li>
+        <li data-lang="zh">量化项目：用 Reddit API / PRAW 从 r/science 采集评论;检验"证据型 vs 情绪型"论点对感知说服力的影响（VADER 情感分析、Mann–Whitney U）;在 Gephi 做网络分析。</li>
       </ul>
     </div>
 
     <div class="entry">
-      <h3>Hubei University of Economics — BA Network and New Media (GPA 3.7/4.0)</h3>
-      <p class="meta">Sep 2018 – Jun 2022 · Wuhan, China</p>
+      <h3><span data-lang="en">Hubei University of Economics — BA Network and New Media (GPA 3.7/4.0)</span><span data-lang="zh">湖北经济学院 — 文学学士 网络与新媒体（GPA 3.7/4.0）</span></h3>
+      <p class="meta"><span data-lang="en">Sep 2018 – Jun 2022 · Wuhan, China</span><span data-lang="zh">2018 年 9 月 – 2022 年 6 月 · 中国武汉</span></p>
       <ul>
-        <li>University Scholarship (top 5%); National Third Prize, Radio Category, 12th National College Student Advertising Art Competition (top 0.2%).</li>
+        <li data-lang="en">University Scholarship (top 5%); National Third Prize, Radio Category, 12th National College Student Advertising Art Competition (top 0.2%).</li>
+        <li data-lang="zh">校级藏龙学子奖学金（前 5%）;第 12 届全国大学生广告艺术大赛广播类全国三等奖（前 0.2%）。</li>
       </ul>
     </div>
   </div>
@@ -206,30 +251,30 @@
 
 <section id="skills">
   <div class="wrap">
-    <h2>Skills</h2>
+    <h2><span data-lang="en">Skills</span><span data-lang="zh">技能与证书</span></h2>
     <div class="skill-group">
-      <span class="label">ML / DL &amp; research:</span>
-      <span class="items">model evaluation &amp; benchmarking, diffusion models, attention interventions, ablation, placebo controls, robustness checks.</span>
+      <span class="label"><span data-lang="en">ML / DL &amp; research:</span><span data-lang="zh">ML / DL 与研究：</span></span>
+      <span class="items"><span data-lang="en">model evaluation &amp; benchmarking, diffusion models, attention interventions, ablation, placebo controls, robustness checks.</span><span data-lang="zh">模型评估与基准测试、扩散模型、注意力干预、消融、安慰剂对照、稳健性检验。</span></span>
     </div>
     <div class="skill-group">
-      <span class="label">Programming &amp; data:</span>
-      <span class="items">Python, PyTorch (forward hooks), Hugging Face, CLIP, LLaVA, LPIPS, statsmodels, SPSS, Tableau, cloud GPU, API data collection, Git.</span>
+      <span class="label"><span data-lang="en">Programming &amp; data:</span><span data-lang="zh">编程与数据：</span></span>
+      <span class="items"><span data-lang="en">Python, PyTorch (forward hooks), Hugging Face, CLIP, LLaVA, LPIPS, statsmodels, SPSS, Tableau, cloud GPU, API data collection, Git.</span><span data-lang="zh">Python、PyTorch（forward hooks）、Hugging Face、CLIP、LLaVA、LPIPS、statsmodels、SPSS、Tableau、云端 GPU、API 数据采集、Git。</span></span>
     </div>
     <div class="skill-group">
-      <span class="label">Research methods:</span>
-      <span class="items">experimental design, thematic &amp; content analysis, mixed methods, online ethnography, user research, NVivo, competitor analysis.</span>
+      <span class="label"><span data-lang="en">Research methods:</span><span data-lang="zh">研究方法：</span></span>
+      <span class="items"><span data-lang="en">experimental design, thematic &amp; content analysis, mixed methods, online ethnography, user research, NVivo, competitor analysis.</span><span data-lang="zh">实验设计、主题与内容分析、混合方法、线上民族志、用户研究、NVivo、竞品分析。</span></span>
     </div>
     <div class="skill-group">
-      <span class="label">Statistics:</span>
-      <span class="items">hypothesis testing (t-test), regression, descriptive statistics, Mann–Whitney U.</span>
+      <span class="label"><span data-lang="en">Statistics:</span><span data-lang="zh">统计：</span></span>
+      <span class="items"><span data-lang="en">hypothesis testing (t-test), regression, descriptive statistics, Mann–Whitney U.</span><span data-lang="zh">假设检验（t 检验）、回归、描述性统计、Mann–Whitney U。</span></span>
     </div>
     <div class="skill-group">
-      <span class="label">Engineering practices:</span>
-      <span class="items">modular package layout, reproducible pipelines, unit testing (pytest), linting (ruff), CI/CD with GitHub Actions.</span>
+      <span class="label"><span data-lang="en">Engineering practices:</span><span data-lang="zh">工程实践：</span></span>
+      <span class="items"><span data-lang="en">modular package layout, reproducible pipelines, unit testing (pytest), linting (ruff), CI/CD with GitHub Actions.</span><span data-lang="zh">模块化包结构、可复现流水线、单元测试（pytest）、代码检查（ruff）、基于 GitHub Actions 的 CI/CD。</span></span>
     </div>
     <div class="skill-group">
-      <span class="label">Communication:</span>
-      <span class="items">technical &amp; academic writing, English report writing, client / stakeholder communication, cross-functional collaboration; CDA Data Analyst Level I.</span>
+      <span class="label"><span data-lang="en">Communication:</span><span data-lang="zh">沟通：</span></span>
+      <span class="items"><span data-lang="en">technical &amp; academic writing, English report writing, client / stakeholder communication, cross-functional collaboration; CDA Data Analyst Level I.</span><span data-lang="zh">技术与学术写作、英文报告撰写、客户/利益相关方沟通、跨职能协作;CDA 数据分析师 Level I。</span></span>
     </div>
   </div>
 </section>
@@ -242,6 +287,25 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  (function () {
+    var body = document.body;
+    var btn = document.getElementById('langToggle');
+    function apply(lang) {
+      body.classList.remove('en', 'zh');
+      body.classList.add(lang);
+      document.documentElement.lang = (lang === 'zh') ? 'zh' : 'en';
+      // button shows the language you can switch TO
+      btn.textContent = (lang === 'zh') ? 'EN' : '中文';
+      try { localStorage.setItem('cv-lang', lang); } catch (e) {}
+    }
+    var saved;
+    try { saved = localStorage.getItem('cv-lang'); } catch (e) {}
+    apply(saved === 'zh' ? 'zh' : 'en');
+    btn.addEventListener('click', function () {
+      apply(body.classList.contains('zh') ? 'en' : 'zh');
+    });
+  })();
 </script>
 
 </body>

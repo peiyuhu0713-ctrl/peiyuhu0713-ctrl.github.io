@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Peiyu Hu — Applied AI Safety & Governance Research</title>
+<meta name="description" content="Peiyu Hu — applied researcher in empirical AI safety and governance. Text-to-image interpretability, model evaluation, experimental design." />
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --muted: #555;
+    --line: #e2e2e2;
+    --accent: #1f3a5f;
+    --bg: #ffffff;
+    --max: 760px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+  /* Header */
+  header { padding: 64px 0 28px; border-bottom: 1px solid var(--line); }
+  header h1 { font-size: 2.4rem; margin: 0 0 6px; letter-spacing: -0.5px; }
+  .tagline { color: var(--muted); font-size: 1.05rem; margin: 0 0 18px; }
+  .contact { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 0.95rem; }
+  .contact span, .contact a { white-space: nowrap; }
+  .contact .sep { color: var(--line); }
+
+  /* Sections */
+  section { padding: 36px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type { border-bottom: none; }
+  h2 {
+    font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--accent); margin: 0 0 20px; font-weight: 700;
+  }
+  h3 { font-size: 1.1rem; margin: 0 0 2px; }
+  .meta { color: var(--muted); font-size: 0.9rem; margin: 0 0 10px; }
+  .entry { margin-bottom: 26px; }
+  .entry:last-child { margin-bottom: 0; }
+  ul { margin: 8px 0 0; padding-left: 20px; }
+  li { margin-bottom: 7px; }
+  p { margin: 0 0 12px; }
+
+  /* Skills */
+  .skill-group { margin-bottom: 14px; }
+  .skill-group .label { font-weight: 700; }
+  .skill-group .items { color: var(--muted); }
+
+  /* Nav */
+  nav { position: sticky; top: 0; background: rgba(255,255,255,0.92);
+        backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); z-index: 10; }
+  nav .wrap { display: flex; gap: 18px; padding-top: 12px; padding-bottom: 12px;
+              font-size: 0.85rem; overflow-x: auto; }
+  nav a { color: var(--muted); }
+
+  footer { padding: 40px 0 60px; color: var(--muted); font-size: 0.85rem; text-align: center; }
+
+  @media (max-width: 600px) {
+    header { padding-top: 40px; }
+    header h1 { font-size: 1.9rem; }
+  }
+  @media print {
+    nav, footer { display: none; }
+    section { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#about">About</a>
+    <a href="#research">Research</a>
+    <a href="#engineering">Engineering</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#skills">Skills</a>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <h1>Peiyu Hu</h1>
+    <p class="tagline">Applied researcher in <strong>empirical AI safety &amp; governance</strong> — how alignment/safety constraints shape model behaviour, model evaluation, experimental design.</p>
+    <div class="contact">
+      <!-- TODO: a personal phone number on a public page invites spam — left out by default. Uncomment if you want it.
+      <span>+86 176 8372 6996</span><span class="sep">·</span> -->
+      <span>Relocating to Singapore · July 2026</span>
+      <span class="sep">·</span>
+      <a href="mailto:peiyuhu0713@gmail.com">peiyuhu0713@gmail.com</a>
+      <span class="sep">·</span>
+      <a href="https://github.com/peiyuhu0713-ctrl" target="_blank" rel="noopener">GitHub</a>
+      <span class="sep">·</span>
+      <a href="https://www.linkedin.com/in/peiyuhudaisy/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <h2>Profile</h2>
+    <p>Applied researcher working where machine learning meets the social and ethical questions it raises. I design controlled experiments and build end-to-end ML/DL pipelines — from data collection and preprocessing, through statistical analysis and proof-of-concept modelling, to validation and reporting — in Python and PyTorch, with attention to reproducibility and pre-registration.</p>
+    <p>My current work empirically studies how a generative model's safety/alignment constraints reshape its outputs, sitting directly within empirical AI safety and governance. I pair hands-on ML with social-science and data-ethics training (Edinburgh MSc), turn open research questions into measurable, testable hypotheses, and communicate results clearly to non-technical audiences. Working languages: English and Mandarin.</p>
+  </div>
+</section>
+
+<section id="research">
+  <div class="wrap">
+    <h2>Research</h2>
+    <div class="entry">
+      <h3>Generative AI Intervention &amp; Digital Imagination</h3>
+      <p class="meta">Independent Researcher (OSF-preregistered) · Mar 2026 – Present · <a href="https://github.com/peiyuhu0713-ctrl" target="_blank" rel="noopener">github.com/peiyuhu0713-ctrl</a></p>
+      <ul>
+        <li>Built a quantitative framework to test whether generative-model safety/alignment constraints are monotonically beneficial, operationalising creative outcomes as measurable constructs — semantic alignment, visual diversity, <strong>repair cost</strong> (prompt iterations needed to reach intent), a <strong>validity threshold</strong> for acceptable output, and <strong>diversity cost</strong> (representational range lost as constraints tighten).</li>
+        <li>Designed three pilot rounds and a pre-registered main experiment over SDXL constraint conditions, prompt-stratified test sets, and placebo controls; generated and evaluated 2,500+ images, identifying a non-monotonic <strong>inverted-U relationship</strong> between constraint strength and creative diversity, peaking near the model's default setting.</li>
+        <li>Built the full Python / PyTorch / Hugging Face pipeline on cloud GPU (AutoDL): automated generation, a quality-control gate, scoring with a 4-bit-quantised LLaVA-1.5-7B, and CLIP / LPIPS metric computation.</li>
+        <li>Ran stratified robustness checks and attention ablations via PyTorch forward hooks against a placebo-module control, to separate attention-level effects from prompt-level differences.</li>
+        <li>Designed a qualitative arm — semi-structured creator interviews — to map model <strong>boundaries</strong> (soft / cost / trade-off / persistent) and how repair burden and cultural-representation gaps fall unequally across users.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="engineering">
+  <div class="wrap">
+    <h2>Engineering</h2>
+    <div class="entry">
+      <h3>Production-Line Defect Detection — Tabular ML Pipeline with CI/CD</h3>
+      <p class="meta"><a href="https://github.com/peiyuhu0713-ctrl/production-line-defect-detection" target="_blank" rel="noopener">github.com/peiyuhu0713-ctrl/production-line-defect-detection</a></p>
+      <ul>
+        <li>Built a small, modular, <strong>unit-tested</strong> scikit-learn pipeline that predicts quality-control failures from imbalanced sensor measurements, framed on a public manufacturing-sensor dataset (synthetic sample data included; structured to drop in the real dataset behind the same interface).</li>
+        <li>Engineered with software-architecture and reproducibility in mind: a src/ package with separate data/model/evaluation modules, editable install, and config centralised in pyproject.toml.</li>
+        <li>Set up an automated <strong>GitHub Actions CI pipeline</strong> that runs linting (ruff) and the test suite (pytest) on every push; evaluated with ROC-AUC / average precision (not accuracy) given rare defects.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <h2>Experience</h2>
+
+    <div class="entry">
+      <h3>Ovios — TikTok Creator Business Development</h3>
+      <p class="meta">May 2025 – Oct 2025 · Remote</p>
+      <ul>
+        <li>Built a data-driven screening process over 2,000+ candidates and optimised creator allocation under a hard budget constraint (≤10% of GMV), achieving up to USD 30K weekly GMV and 500K+ likes on a single TikTok post.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <h3>Kantar — Research Executive</h3>
+      <p class="meta">Sep 2024 – Feb 2025 · Shanghai</p>
+      <ul>
+        <li>Ran brand-health tracking and advertising-effectiveness studies for global brands (Unilever, Kohler, Dyson, The North Face), producing standardised English reports.</li>
+        <li>Delivered consumer insights across 10+ dimensions (awareness, purchase, recommendation, brand imagery), including Kohler's 2024 brand-health tracking and touchpoint-channel analysis.</li>
+        <li>Coordinated programming resources and cross-functional workflows for The North Face project — questionnaire programming, testing, and revisions — to ensure on-time launch.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <h3>Publicis Sapient — Data Strategy Intern (Huawei Overseas / Alibaba Cloud)</h3>
+      <p class="meta">Jan 2022 – May 2022 · Shanghai</p>
+      <ul>
+        <li>Monitored Huawei's overseas social-media ecosystem across five platforms (Facebook, YouTube and others): follower growth, engagement metrics, comment sentiment, and influencer collaborations.</li>
+        <li>Built 10+ dimension visualisation dashboards and event reviews (e.g. MWC), locating communication pain points and lifting post engagement by ~40%.</li>
+        <li>Independently benchmarked Alibaba Cloud competitors (AWS, Google Cloud and others), reviewing 70+ competitor posts monthly for content themes and high-performing patterns.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <h2>Education</h2>
+
+    <div class="entry">
+      <h3>The University of Edinburgh — MSc Data, Inequality and Society (Merit)</h3>
+      <p class="meta">Sep 2022 – Dec 2023 · Edinburgh, UK</p>
+      <ul>
+        <li>Coursework: Social Data Science; Ethical Data Futures; Migration and Forced Displacement in the Digital Age.</li>
+        <li>Dissertation: comparative content analysis of gender inequality in YouTube comments — multi-level node coding of 1,200 comments in NVivo.</li>
+        <li>Quantitative project: Reddit API / PRAW data collection from r/science; tested evidence- vs emotion-based argument types against perceived persuasiveness (VADER sentiment, Mann–Whitney U); network analysis in Gephi.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <h3>Hubei University of Economics — BA Network and New Media (GPA 3.7/4.0)</h3>
+      <p class="meta">Sep 2018 – Jun 2022 · Wuhan, China</p>
+      <ul>
+        <li>University Scholarship (top 5%); National Third Prize, Radio Category, 12th National College Student Advertising Art Competition (top 0.2%).</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <h2>Skills</h2>
+    <div class="skill-group">
+      <span class="label">ML / DL &amp; research:</span>
+      <span class="items">model evaluation &amp; benchmarking, diffusion models, attention interventions, ablation, placebo controls, robustness checks.</span>
+    </div>
+    <div class="skill-group">
+      <span class="label">Programming &amp; data:</span>
+      <span class="items">Python, PyTorch (forward hooks), Hugging Face, CLIP, LLaVA, LPIPS, statsmodels, SPSS, Tableau, cloud GPU, API data collection, Git.</span>
+    </div>
+    <div class="skill-group">
+      <span class="label">Research methods:</span>
+      <span class="items">experimental design, thematic &amp; content analysis, mixed methods, online ethnography, user research, NVivo, competitor analysis.</span>
+    </div>
+    <div class="skill-group">
+      <span class="label">Statistics:</span>
+      <span class="items">hypothesis testing (t-test), regression, descriptive statistics, Mann–Whitney U.</span>
+    </div>
+    <div class="skill-group">
+      <span class="label">Engineering practices:</span>
+      <span class="items">modular package layout, reproducible pipelines, unit testing (pytest), linting (ruff), CI/CD with GitHub Actions.</span>
+    </div>
+    <div class="skill-group">
+      <span class="label">Communication:</span>
+      <span class="items">technical &amp; academic writing, English report writing, client / stakeholder communication, cross-functional collaboration; CDA Data Analyst Level I.</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    © <span id="year"></span> Peiyu Hu · Built as a static site
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

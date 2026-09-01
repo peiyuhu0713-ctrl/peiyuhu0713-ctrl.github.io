@@ -236,6 +236,7 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
       <ul><li>Whether the participant is in the weaker- or stronger-brief-mismatch group.<b>Assigned per participant; all four tasks use the same condition</b></li>
         <li>Which four tasks were drawn, and in what order</li>
         <li>Which tasks were excluded for insufficient familiarity</li>
+        <li>Stable identifiers linking all records in the session<br><code>participant_id · session_id · task_instance_id · stimulus_id</code></li>
       </ul>
     </div>
   </div>
@@ -374,11 +375,11 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
     <div class="rail">
       <h4>Recorded at every Generate</h4>
       <ul>
-        <li><b>The full prompt submitted with this request</b>, stored as complete text, never as a diff</li>
+        <li><b>The full prompt submitted with this request</b>, stored as complete text, never as a diff, with a stable version identifier<br><code>prompt_version_id</code></li>
         <li>When Generate was selected</li>
         <li>When the image was returned</li>
         <li>Generation attempt count incremented; success and failure counted separately<br><code>generation_attempt_count · generation_success_count · generation_failure_count</code></li>
-        <li>The resulting image, stored and identified</li>
+        <li>The resulting image, stored and identified<br><code>generation_id · output_image_id</code></li>
         <li>Model version, generation parameters, seed</li>
       </ul>
       <h4 style="margin-top:12px">Timing</h4>
@@ -391,6 +392,8 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
       <ul><li>The prompt differs from the initial version<b> and </b>at least one new image has been generated successfully. Submit unlocks only when both hold</li></ul>
       <h4 style="margin-top:12px">How continued repair is determined</h4>
       <ul><li>After the mandated generation, generations the participant issues<b>of their own accord</b>— the second and any further ones — are recorded as continued repair</li><li>The system must not prompt or encourage further revision in any way</li></ul>
+      <h4 style="margin-top:12px">If a task is skipped</h4>
+      <ul><li>A participant who genuinely lacks a basis for judging the assigned task may request a replacement. The system records the skipped task, the participant's reason, and the replacement task drawn<br><code>task_skipped · task_skip_reason · replacement_task_id</code></li></ul>
     </div>
   </div>
 </section>
@@ -425,6 +428,7 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
         <li>Full text of the social or cultural impression answer (if enabled)<br><code>post_task_social_cultural_impression</code></li>
         <li>Which image was finally submitted</li>
         <li>Task totals: active time, successful generations, failed requests, number of prompt versions</li>
+        <li>Whether the assigned task was completed or replaced, with the replacement record linked to the same session</li>
       </ul>
     </div>
   </div>
@@ -510,7 +514,7 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
 <div class="foot">
   <p>Screen count: two lead-in screens (01–02), five screens per task making twenty, plus post-test and debrief, giving twenty-four in all.</p>
   <p>These wireframes specify interface structure, control states and the points at which data are recorded. They do not specify visual styling. Question wording, scale anchors and button labels are taken from the study configuration.</p>
-  <p>The platform does not compute the BRBI, the four perception–intention states, final compliance, or the actual repair strategy; these are coded by the researchers afterwards. The platform is responsible only for recording and exporting the raw data in full and in a linkable form.</p>
+  <p>The platform does not compute the BRBI, the four perception–intention states, final compliance, the actual repair strategy, or the number of substantive prompt revisions; these are coded by the researchers afterwards. Complete prompt versions and event records are retained as the source for coding substantive prompt revisions. The platform is responsible only for recording and exporting the raw data in full and in a linkable form, using stable participant, session, task, stimulus, prompt-version, generation, and output-image identifiers.</p>
 </div>
 </div>
 

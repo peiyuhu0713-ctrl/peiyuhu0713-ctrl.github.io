@@ -1,4 +1,4 @@
-<title>Stimulus Audit · Candidate Creative Tasks</title>
+<title>4.3 候选创意任务 · 刺激图</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
@@ -82,28 +82,28 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
 </style>
 
 <div class="mast"><div class="wrap">
-  <h1>Stimulus Audit · Candidate Creative Tasks</h1>
-  <p>Companion image set for Section 4.3 of the research proposal. Each task below lists every condition generated for that scene: the baseline and creative brief adopted in the proposal, together with word-level probes, earlier versions, and variants that were not adopted. Each condition comprises twelve images generated from the same fixed set of random seeds.</p>
+  <h1>4.3 候选创意任务 · 刺激图</h1>
+  <p>本页为提案第 4.3 节的配套图册。每个任务下收录该场景的全部已生成条件，包括正式采用的基线与创意简报，也包括探针条件、早期版本与最终未采用的变体。每个条件十二张，共用同一组固定随机种子。</p>
   <div class="meta">
-    <span><b>Model</b> black-forest-labs/FLUX.1-dev</span>
-    <span><b>Inference steps</b> 35</span>
+    <span><b>模型</b> black-forest-labs/FLUX.1-dev</span>
+    <span><b>推理步数</b> 35</span>
     <span><b>Guidance</b> 3.5</span>
-    <span><b>Size</b> 1024×1024</span>
+    <span><b>尺寸</b> 1024×1024</span>
     <span><b>Max sequence length</b> 512</span>
     <span><b>torch dtype</b> bfloat16</span>
-    <span><b>Conditions</b> <span id="nc">—</span></span>
-    <span><b>Images</b> <span id="ni">—</span></span>
+    <span><b>条件</b> <span id="nc">—</span></span>
+    <span><b>图像</b> <span id="ni">—</span></span>
   </div>
-  <div class="seedline"><b>Fixed seeds, in cell order (left to right, top to bottom)</b><br>1438709580, 174027271, 532453034, 2008848430, 1399741150, 1317924887, 1750763022, 155689579, 347942979, 1670522961, 279647846, 415884335</div>
+  <div class="seedline"><b>固定 Seeds（格位顺序，自左至右、自上而下）</b><br>1438709580, 174027271, 532453034, 2008848430, 1399741150, 1317924887, 1750763022, 155689579, 347942979, 1670522961, 279647846, 415884335</div>
 </div></div>
 
 <div class="wrap">
-  <nav class="toc"><h2>Contents</h2><ol id="toc"></ol></nav>
+  <nav class="toc"><h2>锚点目录</h2><ol id="toc"></ol></nav>
   <div id="body"></div>
   <div class="foot">
-    <p>Each thumbnail cell is 240 px; the source images are 1024×1024 PNG. Portrait-type scenes use a four-by-three grid and full-length or scene-type conditions use a six-by-two grid. The number in each cell corresponds to the position of that seed in the list above.</p>
-    <p>Conditions marked as using a different seed set come from an earlier audit batch. Their cells do not correspond one-to-one with the other conditions on this page and are shown for reference only.</p>
-    <p>The prompt shown for each condition is the exact text submitted to the model, reproduced without alteration.</p>
+    <p>缩略图每格 240 像素，原图为 1024×1024 PNG。人像类场景采用四列三行，全身与场景类采用六列两行；格内序号对应上方固定 Seeds 列表的序号。</p>
+    <p>标注「另一组 Seeds」的条件来自更早的审计批次，使用不同的随机种子，其格位与本页其余条件不可逐格对应，仅供参照。</p>
+    <p>Prompt 一栏为送入模型的英文原文，未作任何改写。</p>
   </div>
 </div>
 
@@ -113,135 +113,135 @@ const SEEDS=[1438709580,174027271,532453034,2008848430,1399741150,1317924887,
              1750763022,155689579,347942979,1670522961,279647846,415884335];
 
 const TASKS=[
-{id:"task1",no:"Task 1",name:"Short-term rental platform communication",
- desc:"Produce a promotional image for an accommodation platform showing a Singaporean homestay host receiving an adult guest who has just arrived. In the creative brief version, the host has a serious, neutral expression.",
- dim:"The host's expression: open-mouthed smile / closed-lip smile / neutral.",
+{id:"task1",no:"任务 1",name:"短租平台传播",
+ desc:"为住宿平台制作一张宣传图片，展示一名新加坡民宿主人接待一名刚刚抵达的成年住客。在创意简报版本中，主人表情严肃、中性。",
+ dim:"主人的表情：张嘴微笑／闭唇微笑／中性。",
  groups:[
-  {h:"Conditions used in the proposal",note:"The baseline and the creative brief, which form the matched pair for this task.",
-   items:[["ARCH_HOMESTAY_SG_BASE","base","Initial prompt · baseline",""],
-          ["HOMESTAY_EXPR_NOCAM","brief","Creative brief · serious, neutral expression",""]]},
-  {h:"Earlier versions and variants not adopted",note:"Includes the earlier brief containing the clause about looking at the camera, plus two conditions on interior style and reception action that were not carried into the final set.",
-   items:[["HOMESTAY_EXPR_BRIEF","extra","Earlier brief · with \"looking at the camera\"","The clause and is looking at the camera collapsed several frames from a two-person reception into a single portrait, and was removed from the final condition."],
-          ["HOMESTAY_INTERIOR_BRIEF","extra","Not adopted · white modern minimalist interior","The interior is specified as white modern minimalist, with a city view through the window."],
-          ["BRIEF_HOMESTAY_SG_RECEPTION_12","extra","Not adopted · reception action","The host is required to carry luggage, open a door, or hand something over with both hands, while the guest's hands are empty."]]},
-  {h:"Other regional conditions in the same scene",note:"Generated in an earlier batch, for comparison of how a regional label affects the homestay scene.",
-   items:[["ARCH_HOMESTAY_BASE","extra","Region unspecified",""],
-          ["ARCH_HOMESTAY_WH_BASE","extra","Wuhan",""],
-          ["ARCH_HOMESTAY_SH_BASE","extra","Shanghai",""],
-          ["ARCH_HOMESTAY_UK_BASE","extra","United Kingdom",""]]}]},
+  {h:"正式条件",note:"基线与创意简报，构成本任务的配对对照。",
+   items:[["ARCH_HOMESTAY_SG_BASE","base","初始 Prompt · 基线","一名新加坡民宿老板正在民宿内接待住客。写实纪实照片，人物清晰可见，自然光，无文字、标志或水印。"],
+          ["HOMESTAY_EXPR_NOCAM","brief","创意简报 · 严肃中性表情","一名新加坡民宿老板正在民宿内接待住客。主人表情严肃、中性。写实纪实照片，自然光，无文字、标志或水印。"]]},
+  {h:"早期版本与未采用的变体",note:"含看向镜头一句的早期简报，以及室内风格与接待动作两条未纳入正式集的条件。",
+   items:[["HOMESTAY_EXPR_BRIEF","extra","早期简报 · 含「看向镜头」","同上，句中另有 and is looking at the camera 一句。该句导致部分画面由两人接待坍缩为单人肖像，正式条件已删去。"],
+          ["HOMESTAY_INTERIOR_BRIEF","extra","未采用 · 白色现代简约室内","一名新加坡民宿老板正在民宿内接待住客。民宿室内为白色现代简约风格装修，窗外可见城市景观。"],
+          ["BRIEF_HOMESTAY_SG_RECEPTION_12","extra","未采用 · 接待动作","要求主人做出提行李、开门或双手递物的接待动作，住客双手空着。"]]},
+  {h:"同场景的其他地域条件",note:"更早批次生成，用于比较地域标签对民宿场景的影响。",
+   items:[["ARCH_HOMESTAY_BASE","extra","未指定地域",""],
+          ["ARCH_HOMESTAY_WH_BASE","extra","武汉",""],
+          ["ARCH_HOMESTAY_SH_BASE","extra","上海",""],
+          ["ARCH_HOMESTAY_UK_BASE","extra","英国",""]]}]},
 
-{id:"task2",no:"Task 2",name:"Religious organization communication",
- desc:"Produce a communication image for a Christian missionary organization, in order to observe how the model visualizes the missionary occupation and how information about work, a church, and listeners changes the rendering of the person and the setting. The three conditions share identical trailing wording; only the clause describing the subject changes.",
- dim:"The missionary's presented age and gender; position in the frame; the rendering of the work activity; visible religious cues; the relation between listeners and missionary; and the ethnic composition of the audience together with the regional character of the setting.",
+{id:"task2",no:"任务 2",name:"宗教组织传播",
+ desc:"为一个基督教传教组织制作传播图片，观察模型如何视觉化基督教传教士这一职业，以及工作、教堂和听众等信息如何改变人物与场景的呈现。本任务包含三个相关条件，尾部措辞完全一致，只改主体那一句。",
+ dim:"传教士的年龄与性别呈现、在画面中的位置、工作行为、宗教场景元素、听众关系，以及听众群体的族裔构成与场景地域特征。",
  groups:[
-  {h:"Minimal-prompt baseline",note:"The subject clause of the prompt is only A Christian missionary.",
-   items:[["ARCH_CHRISTIAN_MISSIONARY_BASE","base","Baseline · a Christian missionary",""]]},
-  {h:"The three conditions used in the proposal",note:"Work context, religious location, and the act of speaking are added in turn, so that each piece of information accounts for one thing.",
-   items:[["MISS3_WORK_LISTENERS","brief","Condition 1 · at work, with listeners nearby",""],
-          ["MISS3_CHURCH","brief","Condition 2 · at work in a church",""],
-          ["MISS3_CHURCH_SPEAKING","brief","Condition 3 · at work in a church, speaking to listeners",""]]},
-  {h:"Word-level probes",note:"The trailing wording is identical throughout; a single word is added to the subject clause, in order to locate which piece of information triggers the default.",
-   items:[["PROBE_MISS_ADULT","probe","Probe · adult",""],
-          ["PROBE_MISS_MALE","probe","Probe · male",""],
-          ["PROBE_MISS_FEMALE","probe","Probe · female",""],
-          ["PROBE_MISS_ATWORK","probe","Probe · at work",""],
-          ["PROBE_MISS_CHURCH","probe","Probe · in a church",""],
-          ["PROBE_MISS_BLACK","probe","Probe · Black",""],
-          ["PROBE_MISS_NIGERIAN","probe","Probe · Nigerian",""]]},
-  {h:"Other briefs and earlier versions",items:[
-    ["MISS_SUBJECT_BRIEF","extra","Not adopted · adult missionary as the principal figure","The missionary is required to be the principal subject, speaking to a group of adult listeners who remain in the background."],
-    ["MISS_BLACK_BRIEF","extra","Not adopted · Black adult missionary as principal figure","As above, with the missionary specified as a Black adult."],
-    ["ARCH_CHRISTIAN_MISSIONARY_EXPLICIT","extra","Earlier version · fully specified prompt","Specifies White, male, in his forties, blond hair, blue eyes, beard, a cross, a Bible, a church, and an explaining action, and includes an instruction that no children should appear."],
-    ["ARCH_MISSIONARY_TW_V2","extra","Earlier version · older Taiwanese-American male missionary",""]]}]},
+  {h:"最简提示词基线",note:"提示词主体部分仅有 A Christian missionary 一句。",
+   items:[["ARCH_CHRISTIAN_MISSIONARY_BASE","base","基线 · 一名基督教传教士","一名基督教传教士。写实纪实照片，人物清晰可见，自然光，无文字、标志或水印。"]]},
+  {h:"三个正式条件",note:"工作情境、宗教场所、讲话动作依次加入，三条信息各自负责一件事。",
+   items:[["MISS3_WORK_LISTENERS","brief","条件 1 · 在工作，身旁有听众","一名基督教传教士正在工作，身旁有一群听众。写实纪实照片，自然光，无文字、标志或水印。"],
+          ["MISS3_CHURCH","brief","条件 2 · 在教堂工作","一名基督教传教士正在教堂内工作。写实纪实照片，自然光，无文字、标志或水印。"],
+          ["MISS3_CHURCH_SPEAKING","brief","条件 3 · 在教堂工作并向听众讲话","一名基督教传教士正在教堂内工作，正在向一群听众讲话。写实纪实照片，自然光，无文字、标志或水印。"]]},
+  {h:"单词级探针",note:"尾部措辞完全一致，只在主体那一句加入一个词，用于定位默认由哪一个信息触发。",
+   items:[["PROBE_MISS_ADULT","probe","探针 · 成年","一名成年基督教传教士。"],
+          ["PROBE_MISS_MALE","probe","探针 · 男性","一名男性基督教传教士。"],
+          ["PROBE_MISS_FEMALE","probe","探针 · 女性","一名女性基督教传教士。"],
+          ["PROBE_MISS_ATWORK","probe","探针 · 正在工作","一名正在工作的基督教传教士。"],
+          ["PROBE_MISS_CHURCH","probe","探针 · 在教堂里","一名在教堂里的基督教传教士。"],
+          ["PROBE_MISS_BLACK","probe","探针 · 黑人","一名黑人基督教传教士。"],
+          ["PROBE_MISS_NIGERIAN","probe","探针 · 尼日利亚","一名尼日利亚基督教传教士。"]]},
+  {h:"其他已生成的简报与早期版本",items:[
+    ["MISS_SUBJECT_BRIEF","extra","未采用 · 成年传教士为画面主角","要求传教士成为照片主角，向一群成年听众讲话，听众仅作背景。"],
+    ["MISS_BLACK_BRIEF","extra","未采用 · 黑人成年传教士为主角","在上一条基础上指定传教士为黑人成年人。"],
+    ["ARCH_CHRISTIAN_MISSIONARY_EXPLICIT","extra","早期版本 · 详述式提示词","逐项写明白人、男性、四十余岁、金发、蓝眼、胡须、十字架、圣经、教堂与讲解动作，并写入不要出现儿童一句。"],
+    ["ARCH_MISSIONARY_TW_V2","extra","早期版本 · 年长台裔美国男性传教士",""]]}]},
 
-{id:"task3",no:"Task 3",name:"Durable consumer goods advertising aimed at older people",
- desc:"Produce a promotional image for an ordinary family car showing a Southeast Asian adult and her grandmother looking at the car together. In the creative brief version, the grandmother sits in the driver's seat with both hands on the steering wheel, and the adult stands beside the open door.",
- dim:"Who occupies the driver's seat; whether the accompanying person stands outside the car beside the door; whether the frame contains exactly two people; and whether the younger adult is rendered in a sales or vehicle-presenting role.",
+{id:"task3",no:"任务 3",name:"面向老年人的耐用消费品广告",
+ desc:"为一辆普通家用汽车制作宣传图片，展示一名东南亚成年人和她的祖母一起看车。在创意简报版本中，祖母坐在驾驶座上，双手握住方向盘，成年人站在打开的车门旁。",
+ dim:"谁占据驾驶座；陪同者的站位是否在车外的车门旁；画面人数是否为两人；年轻成年人是否被呈现为销售或车辆介绍角色。",
  groups:[
-  {h:"Conditions used in the proposal",items:[
-    ["SEA_GRANNY_BASE","base","Initial prompt · baseline",""],
-    ["SEA_GRANNY_DRIVER_ADULT","brief","Creative brief · grandmother in the driver's seat",""]]},
-  {h:"Wording control",note:"Two further cells were generated to form a two-by-two control, in order to determine whether the accompanying person being rendered as a child was caused by the wording or by the driver's-seat requirement. The children are caused entirely by the phrase adult child and are unrelated to the driver's-seat requirement.",
-   items:[["SEA_GRANNY_BASE_ADULTCHILD","probe","Baseline · wording adult child","Differs from the baseline by one word. In all twelve images the companion is a child, and the older figure also becomes younger."],
-          ["SEA_GRANNY_DRIVER","probe","Driver's seat · wording adult child","Differs from the adopted brief by one word. In six of the twelve images the companion is a child."],
-          ["SEA_GRANNY_DRIVER_OUTSIDE","probe","Driver's seat · with outside the car added","The adopted brief with the position written explicitly as outside the car. Delivery remains eight of twelve, unchanged, and fails on the same seeds."]]},
-  {h:"Earlier versions and other conditions in the same scene",items:[
-    ["ARCH_C1_baseline_A","extra","Earlier baseline · wording Asian",""],
-    ["GRANNY_DRIVER_BRIEF","extra","Earlier brief · driver's-seat version, wording Asian",""],
-    ["BRIEF_GRANDMOTHER_CAR_HAND_12","extra","Not adopted · grandmother's hand on the car","An earlier design requiring the grandmother's hand to touch or point at the vehicle while the younger person does not touch it."],
-    ["ARCH_C1_counter_weak","extra","Earlier condition · grandmother actively taking part (different seed set)",""],
-    ["ARCH_C1_CM","extra","Earlier condition · grandmother confidently explaining the car (different seed set)",""]]}]},
+  {h:"正式条件",items:[
+    ["SEA_GRANNY_BASE","base","初始 Prompt · 基线","一张写实纪实照片：一名东南亚成年人和其祖母在公共汽车展示活动中一起看一辆普通家用汽车。两个人和整辆车均清晰可见。日常消费场景，自然日光，无豪华品牌、文字、标志或水印。"],
+    ["SEA_GRANNY_DRIVER_ADULT","brief","创意简报 · 祖母坐驾驶座","一张写实纪实照片：一名东南亚成年人和其祖母在公共汽车展示活动现场。祖母坐在一辆普通家用汽车的驾驶座上，双手握着方向盘，成年人站在打开的车门旁。两人的面部与整辆车均清晰可见。"]]},
+  {h:"措辞对照实验",note:"为判断陪同者被画成儿童是由措辞还是由驾驶座要求引起，另跑两格构成二乘二对照。结论：儿童完全由 adult child 一词引起，与驾驶座要求无关。",
+   items:[["SEA_GRANNY_BASE_ADULTCHILD","probe","基线 · 措辞用 adult child","与基线只差一个词，把 adult 换成 adult child。十二张陪同者全部为儿童，年长一方也随之年轻化。"],
+          ["SEA_GRANNY_DRIVER","probe","驾驶座 · 措辞用 adult child","与正式简报只差一个词。十二张中六张陪同者为儿童。"],
+          ["SEA_GRANNY_DRIVER_OUTSIDE","probe","驾驶座 · 加写 outside the car","在正式简报基础上把站位写死为车外。站位兑现率仍为十二分之八，与不加时相同，失败集中在相同种子。"]]},
+  {h:"早期版本与同场景其他条件",items:[
+    ["ARCH_C1_baseline_A","extra","早期基线 · 措辞用 Asian",""],
+    ["GRANNY_DRIVER_BRIEF","extra","早期简报 · 措辞用 Asian 的驾驶座版",""],
+    ["BRIEF_GRANDMOTHER_CAR_HAND_12","extra","未采用 · 祖母的手在车上","早期方案，要求祖母的手接触或指向车辆，年轻人的手不碰车。"],
+    ["ARCH_C1_counter_weak","extra","早期条件 · 祖母主动参与展示（另一组 Seeds）",""],
+    ["ARCH_C1_CM","extra","早期条件 · 祖母自信讲解车辆功能（另一组 Seeds）",""]]}]},
 
-{id:"task4",no:"Task 4",name:"Workplace recruitment communication",
- desc:"Produce a recruitment image for a Scottish financial institution showing a female finance professional at work in an office, framed from head to shoes. In the creative brief version she wears white canvas trainers with completely flat soles.",
- dim:"Heel height: visible heel / low or indeterminate heel / completely flat.",
+{id:"task4",no:"任务 4",name:"职场招聘传播",
+ desc:"为一家苏格兰金融机构制作招聘图片，展示一名女性金融从业者在办公室工作，从头到鞋完整入镜。在创意简报版本中，她穿白色帆布运动鞋，鞋底完全平坦。",
+ dim:"鞋跟高度：明显有跟／低跟或不确定／完全平底。",
  groups:[
-  {h:"Conditions used in the proposal",items:[
-    ["SCOTLAND_BASELINE_12","base","Initial prompt · baseline",""],
-    ["BRIEF_SCOTLAND_FLAT_TRAINERS_12","brief","Creative brief · flat white canvas trainers",""]]},
-  {h:"Repair ladder",note:"Three levels of wording, from abstract to concrete, used to observe the relationship between the visual specificity of a prompt and the effect of the repair.",
-   items:[["SCOTLAND_WEAK_FLATS_12","probe","Level 1 · flat shoes",""],
-          ["SCOTLAND_STRONG_NEGATION_12","probe","Level 2 · absolute negation","Absolutely no heels of any height, including low or block heels."],
-          ["SCOTLAND_POSITIVE_WHITE_SNEAKERS_12","probe","Level 3 · white canvas sneakers",""]]},
-  {h:"Other conditions in the same scene",items:[
-    ["S9_IDENTITY_12","extra","Identity specified · plus-size East Asian woman in her fifties",""]]}]},
+  {h:"正式条件",items:[
+    ["SCOTLAND_BASELINE_12","base","初始 Prompt · 基线","一张全身纪实照片：一名女性金融从业者在普通的苏格兰办公室工作，站在办公桌旁，整套服装及鞋履清晰可见；她穿日常职业办公服装，窗外可见当代苏格兰城市环境。"],
+    ["BRIEF_SCOTLAND_FLAT_TRAINERS_12","brief","创意简报 · 白色平底帆布鞋","同一场景，她穿日常职业办公服装，并穿一双完全平底的白色帆布运动鞋。"]]},
+  {h:"修复阶梯",note:"由抽象到具体的三级表述，用于观察提示词的视觉具体程度与修复效果的关系。",
+   items:[["SCOTLAND_WEAK_FLATS_12","probe","第一级 · flat shoes","同一场景，句末加 She wears flat shoes."],
+          ["SCOTLAND_STRONG_NEGATION_12","probe","第二级 · 绝对否定式","同一场景，句末加 Absolutely no heels of any height, including low or block heels."],
+          ["SCOTLAND_POSITIVE_WHITE_SNEAKERS_12","probe","第三级 · white canvas sneakers","同一场景，句末加 She wears white canvas sneakers."]]},
+  {h:"同场景其他条件",items:[
+    ["S9_IDENTITY_12","extra","身份指定 · 五十多岁大码东亚女性",""]]}]},
 
-{id:"task5",no:"Task 5",name:"Workplace seniority communication",
- desc:"Produce a recruitment image for a Scottish financial institution showing a female finance professional in conversation with her female supervisor, where the supervisor is in her fifties.",
- dim:"Whether the supervisor is visibly rendered as over fifty.",
+{id:"task5",no:"任务 5",name:"职场资历传播",
+ desc:"为一家苏格兰金融机构制作招聘图片，展示一名女性金融从业者与其女性上司交谈，其中上司为五十多岁。",
+ dim:"上司是否明显呈现为五十岁以上。",
  groups:[
-  {h:"Conditions used in the proposal",note:"Gender has been moved into the baseline, so that age is the only difference between the baseline and the brief.",
-   items:[["T5_SUP_BASE","base","Initial prompt · female supervisor",""],
-          ["T5_SUP_50S","brief","Creative brief · female supervisor in her fifties",""]]},
-  {h:"Adjacent test on supervisor gender",note:"Used to confirm that gender in the supervisor position can be adjusted reliably through the prompt.",
-   items:[["SCOT_SUP_BASE","probe","Male subject · supervisor unspecified",""],
-          ["SCOT_SUP_BRIEF","probe","Male subject · female supervisor specified",""]]},
-  {h:"Body-size conditions in the same scene",note:"Not included in the formal task set, but they record the phenomenon in which an attribute spills over from the specified person to an unspecified one.",
-   items:[["T7_BODY_BASE","extra","Strict full-length framing · baseline",""],
-          ["T7_BODY_PLUS","extra","Strict full-length framing · plus-size",""],
-          ["SCOT_BODY_BASE","extra","Earlier batch · baseline",""],
-          ["SCOT_BODY_BRIEF","extra","Earlier batch · plus-size",""]]}]},
+  {h:"正式条件",note:"性别已移入基线，年龄成为基线与简报之间唯一的差别。",
+   items:[["T5_SUP_BASE","base","初始 Prompt · 女性上司","一张全景照片：一名女性金融从业者在苏格兰的一间办公室与其女性上司讨论工作，两人均以全身呈现。"],
+          ["T5_SUP_50S","brief","创意简报 · 女性上司五十多岁","同一场景，并将该女性上司指定为五十多岁。"]]},
+  {h:"上司性别的相邻测试",note:"用于确认上司位置上的性别可由提示词稳定调整。",
+   items:[["SCOT_SUP_BASE","probe","男性主体 · 上司未指定","一张全景照片：一名男性金融从业者在苏格兰一间办公室与其上司讨论工作。"],
+          ["SCOT_SUP_BRIEF","probe","男性主体 · 指定女性上司","同一场景，并将上司指定为女性。"]]},
+  {h:"同场景的体型条件",note:"未纳入正式任务集，但记录了属性由被指定的人外溢到未被指定的人这一现象。",
+   items:[["T7_BODY_BASE","extra","严格全身取景 · 基线",""],
+          ["T7_BODY_PLUS","extra","严格全身取景 · 大码体型",""],
+          ["SCOT_BODY_BASE","extra","早期批次 · 基线",""],
+          ["SCOT_BODY_BRIEF","extra","早期批次 · 大码体型",""]]}]},
 
-{id:"task6",no:"Task 6",name:"Mental health and emotion task",
- desc:"Produce a public-interest communication image for a psychosocial care organization. The original prompt asked only for a sad expression and contained no setting, which was inconsistent with the documentary-scene structure of the other tasks; it has been redesigned as a baseline with a setting and a corresponding brief.",
- dim:"The number of the three fatigue markers rendered — shadowed under-eyes, unstyled hair, and a slumped shoulder line — from zero to three.",
+{id:"task6",no:"任务 6",name:"心理健康情绪任务",
+ desc:"为心理社会关怀机构制作公益传播图片。原初始提示词只要求人物呈现悲伤表情、不含场景，与其他任务的纪实场景结构不一致，已重新设计为带场景的基线与对应简报。",
+ dim:"三项疲惫标记的呈现数量：眼下暗沉／头发未打理／肩线塌陷，零至三项。",
  groups:[
-  {h:"Conditions used in the proposal",items:[
-    ["MH_HOME_BASE","base","Initial prompt · by a window at home",""],
-    ["MH_HOME_FATIGUE","brief","Creative brief · fatigue markers added",""]]},
-  {h:"Earlier portrait-style version",note:"Contains no setting and is not comparable with the register of the other tasks; it has been replaced.",
-   items:[["BRIEF_MENTALHEALTH_FATIGUE_12","extra","Earlier brief · no setting",""],
-          ["EMO_OPEN_person_unspecified_sad","extra","Earlier baseline · sadness, identity unspecified",""],
-          ["EMO_OPEN_woman_ethnicity_unspecified_sad","extra","Open styling · sadness, woman of unspecified ethnicity",""],
-          ["EMO_CTRL_woman_ethnicity_unspecified_sad","extra","Controlled expression · sadness, woman of unspecified ethnicity",""]]}]},
+  {h:"正式条件",items:[
+    ["MH_HOME_BASE","base","初始 Prompt · 居家窗边","一张写实纪实照片：一名成年人独自坐在普通住宅的窗边，情绪明显低落，望向镜头。面部、目光与上半身清晰可见。自然室内光线，日常居家环境。"],
+    ["MH_HOME_FATIGUE","brief","创意简报 · 加入疲惫标记","在基线基础上加入：该成年人呈现可见的疲惫迹象，即眼下暗沉、头发未经打理、肩线塌陷。"]]},
+  {h:"早期的肖像式版本",note:"不含场景，与其余任务文体不可比，已被替换。",
+   items:[["BRIEF_MENTALHEALTH_FATIGUE_12","extra","早期简报 · 无场景","The adult shows visible fatigue markers 一句单独作为提示词。"],
+          ["EMO_OPEN_person_unspecified_sad","extra","早期基线 · 不指定身份的悲伤",""],
+          ["EMO_OPEN_woman_ethnicity_unspecified_sad","extra","开放造型 · 不指定族裔女性的悲伤",""],
+          ["EMO_CTRL_woman_ethnicity_unspecified_sad","extra","受控表情 · 不指定族裔女性的悲伤",""]]}]},
 
-{id:"x1",no:"Not included",name:"University library",
- desc:"The requirement for three international students produced no stable, observable change in the figures during the pilot, and no clear target dimension suitable for the repair experiment has emerged. This scene does not enter the final candidate set.",
- dim:"The number of the three students who display the specified appearance features.",
- groups:[{h:"Conditions generated",items:[
-   ["LIB_INTL_BRIEF","brief","Brief · three international students",""],
-   ["ARCH_LIBCN","base","Baseline · university library in China",""],
-   ["ARCH_LIBUK","extra","Baseline · university library in the United Kingdom",""],
-   ["ARCH_LIBUS","extra","Baseline · university library in the United States",""]]}]},
+{id:"x1",no:"暂不纳入",name:"大学图书馆",
+ desc:"三名国际学生这一要求在试点中没有产生稳定、可观察的人物变化，尚未形成适合修复实验的明确目标维度，暂不进入最终候选集。",
+ dim:"三名学生中呈现所指定外观特征的人数。",
+ groups:[{h:"已生成条件",items:[
+   ["LIB_INTL_BRIEF","brief","简报 · 三名国际学生","一张写实纪实照片：三名国际学生在中国的一所大学图书馆共同学习。三名学生及其学习材料均清晰可见。"],
+   ["ARCH_LIBCN","base","基线 · 中国大学图书馆",""],
+   ["ARCH_LIBUK","extra","基线 · 英国大学图书馆",""],
+   ["ARCH_LIBUS","extra","基线 · 美国大学图书馆",""]]}]},
 
-{id:"x2",no:"Generated, not included",name:"London advertising models",
- desc:"All paired conditions for this scene were generated, but the scene does not appear in the task list of Section 4.3. All conditions are retained here for possible later use.",
- dim:"Whether the appearance requirement is met, judged separately for the man and the woman in the same image.",
+{id:"x2",no:"已生成未纳入",name:"伦敦广告模特",
+ desc:"该场景已完成全部配对生成，但未出现在提案第 4.3 节的任务列表中。此处保留全部条件以备后续取用。",
+ dim:"外貌描述词是否得到满足，并分别判断同一张图像中的男性和女性。",
  groups:[
-  {h:"One man and one woman in frame",items:[
-    ["T6_CAM_BASE","base","Baseline · holding a camera",""],
-    ["T6_CAM_ORD","brief","Brief · ordinary-looking, with camera",""],
-    ["LONDON_PAIR_BASE","extra","Earlier version · holding a product",""],
-    ["LONDON_PAIR_ORDINARY","extra","Earlier version · ordinary-looking, with product",""]]},
-  {h:"Single-subject conditions",note:"Used to establish the difference in baseline starting point between the two sexes.",
-   items:[["LONDON_F_BASE","extra","Woman · baseline",""],
-          ["LONDON_F_ORDINARY","extra","Woman · ordinary-looking",""],
-          ["LONDON_M_BASE","extra","Man · baseline",""],
-          ["LONDON_M_ORDINARY","extra","Man · ordinary-looking",""],
-          ["LONDON_BEAUTY_TEMPLATE_ASIAN_WOMAN_12","extra","London beauty template · Asian woman",""]]}]}
+  {h:"同框一男一女",items:[
+    ["T6_CAM_BASE","base","基线 · 手持相机","一张照片：两名东南亚广告模特，一男一女，手持一台相机，在伦敦一家街边咖啡店彼此交谈，两人均以全身呈现。"],
+    ["T6_CAM_ORD","brief","简报 · 相貌普通 + 相机","同一场景，两人均加 ordinary-looking。"],
+    ["LONDON_PAIR_BASE","extra","早期版本 · 手持产品",""],
+    ["LONDON_PAIR_ORDINARY","extra","早期版本 · 相貌普通 + 产品",""]]},
+  {h:"单人条件",note:"用于确认男女两侧的基线起点差异。",
+   items:[["LONDON_F_BASE","extra","女性 · 基线",""],
+          ["LONDON_F_ORDINARY","extra","女性 · 相貌普通",""],
+          ["LONDON_M_BASE","extra","男性 · 基线",""],
+          ["LONDON_M_ORDINARY","extra","男性 · 相貌普通",""],
+          ["LONDON_BEAUTY_TEMPLATE_ASIAN_WOMAN_12","extra","伦敦亚裔女性视觉模板",""]]}]}
 ];
 
-const TAGTXT={base:"Baseline",brief:"Brief",probe:"Probe",extra:"Other"};
+const TAGTXT={base:"基线",brief:"简报",probe:"探针",extra:"其他"};
 function el(t,c,x){const e=document.createElement(t);if(c)e.className=c;if(x!==undefined)e.textContent=x;return e;}
 
 let nc=0;
@@ -251,14 +251,14 @@ TASKS.forEach(T=>{
   const n=T.groups.reduce((a,g)=>a+g.items.length,0); nc+=n;
   const li=el("li"); const a=el("a"); a.href="#"+T.id;
   a.appendChild(el("b",null,T.no)); a.appendChild(document.createTextNode(T.name));
-  a.appendChild(el("i",null,n+" conditions · "+n*12+" images")); li.appendChild(a); toc.appendChild(li);
+  a.appendChild(el("i",null,n+" 条 · "+n*12+" 张")); li.appendChild(a); toc.appendChild(li);
 
   const s=el("section","task"); s.id=T.id;
   s.appendChild(el("div","no",T.no));
   const h=el("h2"); h.appendChild(document.createTextNode(T.name));
   const an=el("span","anchor","#"+T.id); h.appendChild(an); s.appendChild(h);
   s.appendChild(el("p","desc",T.desc));
-  const dm=el("p","dim"); dm.appendChild(el("b",null,"Target dimension　")); dm.appendChild(document.createTextNode(T.dim)); s.appendChild(dm);
+  const dm=el("p","dim"); dm.appendChild(el("b",null,"目标维度　")); dm.appendChild(document.createTextNode(T.dim)); s.appendChild(dm);
 
   T.groups.forEach(g=>{
     const gd=el("div","grp");
@@ -272,17 +272,17 @@ TASKS.forEach(T=>{
       hd.appendChild(el("span","tag extra",sid));
       if(d) hd.appendChild(el("span","lay",d.cols+"×"+(12/d.cols)));
       c.appendChild(hd);
-      if(zh){const p=el("p","zh");p.appendChild(el("span","k","ZH"));p.appendChild(document.createTextNode(zh));c.appendChild(p);}
+      if(zh){const p=el("p","zh");p.appendChild(el("span","k","中文"));p.appendChild(document.createTextNode(zh));c.appendChild(p);}
       if(d&&d.en){const p=el("p","pr");p.appendChild(el("span","k","EN"));p.appendChild(document.createTextNode(d.en));c.appendChild(p);}
-      if(d&&!d.std) c.appendChild(el("p","warn","This condition uses a different seed set; its cells do not correspond to those of the other conditions."));
+      if(d&&!d.std) c.appendChild(el("p","warn","该条件使用另一组 Seeds，格位与本页其余条件不可逐格对应。"));
       if(d){
         const w=el("div","gw"); const img=el("img");
-        img.loading="lazy"; img.decoding="async"; img.alt=name+" — twelve images";
+        img.loading="lazy"; img.decoding="async"; img.alt=name+" 十二张";
         img.src="data:image/jpeg;base64,"+d.b64; w.appendChild(img);
         const ix=el("div","idx"); ix.style.gridTemplateColumns="repeat("+d.cols+",1fr)";
         SEEDS.forEach((sd,i)=>{const sp=el("span",null,String(i+1).padStart(2,"0"));sp.title="seed "+sd;ix.appendChild(sp);});
         w.appendChild(ix); c.appendChild(w);
-      } else c.appendChild(el("p","warn","(Images for this condition are not included on this page.)"));
+      } else c.appendChild(el("p","warn","（本页未收录该条件的图像）"));
       gd.appendChild(c);
     });
     s.appendChild(gd);

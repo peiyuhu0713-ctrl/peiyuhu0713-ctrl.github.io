@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Experiment Platform Interface Flow</title>
+<meta name="color-scheme" content="light dark">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Experiment Platform Interface Flow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --ground:#f4f5f3; --surface:#fff; --sunk:#eceee9; --rail:#f7f4ec;
+  --line:#d9dcd5; --line2:#b8bdb3; --line3:#8d948a;
+  --ink:#15181a; --ink2:#555d56; --ink3:#818a80;
+  --live:#1b6b5a; --live-bg:#e2f0eb;
+  --dead:#9aa298; --dead-bg:#e8eae6;
+  --log:#7a5610; --log-bg:#faf2df; --log-line:#e2cf9f;
+  --sans:"IBM Plex Sans",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#101211; --surface:#181b19; --sunk:#202320; --rail:#1d1a14;
+  --line:#2b2f2c; --line2:#414741; --line3:#606860;
+  --ink:#e7eae6; --ink2:#a3aba4; --ink3:#79817a;
+  --live:#5fbfa4; --live-bg:#122b25;
+  --dead:#6b736a; --dead-bg:#232622;
+  --log:#d3ab5d; --log-bg:#221c10; --log-line:#4a3d21;}}
+:root[data-theme="dark"]{
+  --ground:#101211; --surface:#181b19; --sunk:#202320; --rail:#1d1a14;
+  --line:#2b2f2c; --line2:#414741; --line3:#606860;
+  --ink:#e7eae6; --ink2:#a3aba4; --ink3:#79817a;
+  --live:#5fbfa4; --live-bg:#122b25;
+  --dead:#6b736a; --dead-bg:#232622;
+  --log:#d3ab5d; --log-bg:#221c10; --log-line:#4a3d21;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:2px solid var(--live);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+
+.mast{background:var(--surface);border-bottom:1px solid var(--line2)}
+.mast .wrap{padding:30px 22px 20px}
+.mast h1{margin:0;font-size:26px;font-weight:600;letter-spacing:-.01em}
+.mast p{margin:8px 0 0;color:var(--ink2);max-width:62ch}
+.legend{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:12px;color:var(--ink2)}
+.legend b{display:inline-flex;align-items:center;gap:6px;font-weight:400}
+.sw{width:22px;height:12px;border-radius:2px;border:1px solid var(--line2)}
+.sw.a{background:var(--live-bg);border-color:var(--live)}
+.sw.b{background:var(--dead-bg);border-style:dashed}
+.sw.c{background:var(--log-bg);border-color:var(--log-line)}
+
+.flow{margin:26px 0 6px;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:16px 18px}
+.flow h2{margin:0 0 12px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.chip{font-family:var(--mono);font-size:11.5px;padding:4px 9px;border:1px solid var(--line2);border-radius:3px;background:var(--sunk);white-space:nowrap}
+.chip.k{background:var(--live-bg);border-color:var(--live);color:var(--live);font-weight:500}
+.chip.r{background:var(--log-bg);border-color:var(--log-line);color:var(--log)}
+.arw{color:var(--ink3);font-family:var(--mono);font-size:12px}
+
+.scr{margin-top:30px;border-top:2px solid var(--line2);padding-top:18px;scroll-margin-top:12px}
+.hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.no{font-family:var(--mono);font-size:12px;color:var(--live);font-weight:600}
+.hd h3{margin:0;font-size:19px;font-weight:600}
+.st{font-family:var(--mono);font-size:11px;color:var(--ink3);background:var(--sunk);padding:2px 8px;border-radius:3px}
+.sub{margin:0 0 14px;color:var(--ink2);font-size:13.5px;max-width:70ch}
+
+.pair{display:grid;grid-template-columns:1fr 300px;gap:16px}
+@media(max-width:860px){.pair{grid-template-columns:1fr}}
+
+.dev{background:var(--surface);border:1px solid var(--line2);border-radius:5px;overflow:hidden}
+.bar{background:var(--sunk);border-bottom:1px solid var(--line);padding:7px 12px;display:flex;align-items:center;gap:7px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--line2)}
+.bar span{margin-left:6px;font-family:var(--mono);font-size:11px;color:var(--ink3)}
+.body{padding:20px 22px 24px;min-height:190px}
+
+.tt{font-size:16px;font-weight:600;margin:0 0 4px}
+.tx{font-size:13px;color:var(--ink2);margin:0 0 14px;max-width:60ch}
+.card{border:1px solid var(--line);border-radius:4px;padding:12px 14px;margin:10px 0;background:var(--ground)}
+.card .lb{font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink3);margin-bottom:6px}
+.q{font-size:13.5px;margin:0 0 8px}
+.ta{border:1px solid var(--line2);border-radius:3px;background:var(--surface);height:52px;margin-bottom:10px}
+.ta.sm{height:34px}
+.ph{padding:8px 10px;font-size:12px;color:var(--ink3);font-family:var(--mono)}
+.scale{display:flex;gap:6px;margin:6px 0 12px}
+.scale i{flex:1;height:26px;border:1px solid var(--line2);border-radius:3px;background:var(--surface);font-style:normal;
+  display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;color:var(--ink3)}
+.img{border:1px solid var(--line2);border-radius:3px;background:var(--sunk);height:150px;display:flex;
+  align-items:center;justify-content:center;font-family:var(--mono);font-size:11.5px;color:var(--ink3);margin-bottom:12px}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.btn{font-family:var(--sans);font-size:13px;padding:7px 16px;border-radius:3px;border:1px solid var(--live);
+  background:var(--live-bg);color:var(--live);font-weight:500}
+.btn.off{border:1px dashed var(--line2);background:var(--dead-bg);color:var(--dead);font-weight:400}
+.btn.gh{border:1px solid var(--line2);background:transparent;color:var(--ink2)}
+.opt{border:1px solid var(--line2);border-radius:3px;padding:9px 12px;margin-bottom:7px;font-size:13px;background:var(--surface)}
+.note{font-size:11.5px;color:var(--dead);font-family:var(--mono);margin-top:6px}
+
+.rail{background:var(--rail);border:1px solid var(--log-line);border-radius:5px;padding:14px 15px;align-self:start}
+.rail h4{margin:0 0 9px;font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--log)}
+.rail ul{margin:0;padding-left:15px}
+.rail li{font-size:12.5px;color:var(--ink2);margin-bottom:6px;line-height:1.5}
+.rail code{font-family:var(--mono);font-size:11.5px;color:var(--log);background:transparent;padding:0}
+.rail .none{font-size:12.5px;color:var(--ink3);font-style:italic}
+
+.warn{margin-top:12px;border-left:3px solid var(--live);background:var(--live-bg);padding:10px 14px;border-radius:0 3px 3px 0;font-size:13px;color:var(--ink)}
+.warn b{color:var(--live)}
+.pend{border-left:3px solid #b8860b;background:var(--log-bg);padding:10px 14px;border-radius:0 3px 3px 0;font-size:13px;color:var(--ink);margin-top:12px}
+.pend b{color:var(--log)}
+.anch{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;color:var(--ink3);margin:-6px 0 12px}
+.num{display:inline-flex;align-items:center;gap:8px;margin:2px 0 12px}
+.num span{border:1px solid var(--line2);border-radius:3px;background:var(--surface);width:78px;height:30px}
+.num em{font-style:normal;font-family:var(--mono);font-size:11.5px;color:var(--ink3)}
+.tag{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.04em;padding:2px 7px;border-radius:2px;background:var(--log-bg);color:var(--log);border:1px solid var(--log-line);vertical-align:2px;margin-left:6px}
+
+.rep{margin-top:30px;border:1px dashed var(--line2);border-radius:5px;background:var(--surface);padding:20px 22px}
+.rep h3{margin:0 0 6px;font-size:17px}
+.rep p{margin:0;color:var(--ink2);font-size:13.5px;max-width:74ch}
+
+.foot{margin-top:40px;border-top:1px solid var(--line2);padding:18px 0 60px;color:var(--ink3);font-size:12.5px;max-width:76ch}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="mast"><div class="wrap">
+  <h1>Experiment Platform Interface Flow</h1>
+  <p>Participant-facing wireframes for the study of default visual representations and user-side repair cost. Each screen states what is displayed, which controls are enabled at that stage, and what the system records there.</p>
+  <div class="legend">
+    <b><span class="sw a"></span>Enabled here</b>
+    <b><span class="sw b"></span>Visible but disabled</b>
+    <b><span class="sw c"></span>Recorded</b>
+  </div>
+</div></div>
+
+<div class="wrap">
+
+<div class="flow">
+  <h2>24 screens end to end</h2>
+  <div class="chips">
+    <span class="chip k">01 Welcome and consent</span><span class="arw">→</span>
+    <span class="chip k">02 Pre-test</span><span class="arw">→</span>
+    <span class="chip r">Assignment (no screen)</span><span class="arw">→</span>
+    <span class="chip">03 Creative brief</span><span class="arw">→</span>
+    <span class="chip">04 Initial image and questions</span><span class="arw">→</span>
+    <span class="chip">05 Intention</span><span class="arw">→</span>
+    <span class="chip">06 Repair</span><span class="arw">→</span>
+    <span class="chip">07 Task complete</span>
+    <span class="arw">  × 4 tasks →</span>
+    <span class="chip k">23 Post-test</span><span class="arw">→</span>
+    <span class="chip k">24 Debrief</span>
+  </div>
+  <p style="margin:12px 0 0;font-size:13px;color:var(--ink2)">
+    Tasks 2, 3 and 4 are screen-for-screen identical to Task 1; only the stimulus drawn differs. The five screens of one task are drawn in full below; the rest are not repeated.
+  </p>
+</div>
+
+<!-- 01 -->
+<section class="scr">
+  <div class="hd"><span class="no">01</span><h3>Welcome and informed consent</h3><span class="st">Session start</span></div>
+  <p class="sub">No data are recorded before consent is given.</p>
+  <div class="pair">
+    <div class="dev">
+      <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span>/consent</span></div>
+      <div class="body">
+        <p class="tt">About this study</p>
+        <p class="tx">Purpose of the study, duration of roughly 60 to 90 minutes, the right to withdraw at any time, how data are stored and used, and contact details.</p>
+        <div class="opt">☐ I have read the above and agree to take part</div>
+        <div class="row"><span class="btn">Begin</span></div>
+      </div>
+    </div>
+    <div class="rail">
+      <h4>Recorded</h4>
+      <ul><li>Whether consent was given, and when</li><li>Version of the consent form</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- 02 -->
+<section class="scr">
+  <div class="hd"><span class="no">02</span><h3>Pre-test</h3><span class="st">Before the tasks</span></div>
+  <p class="sub">Familiarity determines which tasks a participant can be assigned, so it must be asked before assignment.</p>
+  <div class="pair">
+    <div class="dev">
+      <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span>/pretest</span></div>
+      <div class="body">
+        <div class="card"><div class="lb">Prompt Engineering Competence Scale 9 items</div>
+          <p class="q">Items to be entered</p>
+          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i></div>
+          <div class="anch"><span>1 = Strongly disagree</span><span>5 = Strongly agree</span></div></div>
+        <div class="card"><div class="lb">General algorithmic literacy scale<span class="tag">Pending</span></div>
+          <p class="q">Items and item count to be decided</p></div>
+        <div class="card"><div class="lb">Task familiarity one rating per scene</div>
+          <p class="q">Short-term rental hospitality</p>
+          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i></div>
+          <div class="anch"><span>1 = Not at all familiar</span><span>5 = Very familiar</span></div>
+          <p class="q">Religious organization communication</p>
+          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i></div>
+          <div class="anch"><span>1 = Not at all familiar</span><span>5 = Very familiar</span></div>
+          <p class="q">Car advertising aimed at older people</p>
+          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i></div>
+          <div class="anch"><span>1 = Not at all familiar</span><span>5 = Very familiar</span></div>
+          <p class="q">Workplace recruitment communication</p>
+          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i></div>
+          <div class="anch"><span>1 = Not at all familiar</span><span>5 = Very familiar</span></div>
+          <p class="q">Workplace seniority and supervisor communication</p>
+          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i></div>
+          <div class="anch"><span>1 = Not at all familiar</span><span>5 = Very familiar</span></div>
+          <p class="q">Mental-health public communication</p>
+          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i></div>
+          <div class="anch"><span>1 = Not at all familiar</span><span>5 = Very familiar</span></div></div>
+        <div class="card"><div class="lb">Background</div>
+          <p class="q">How long you have used text-to-image tools, and which ones</p>
+          <div class="ta sm"></div>
+          <p class="q">Your field of work and years of experience</p>
+          <div class="ta sm"></div></div>
+        <div class="card"><div class="lb">Perceived autonomy optional module, controlled by configuration</div>
+          <p class="q">How far do you feel you can control the direction of what is generated</p>
+          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i></div>
+          <div class="anch"><span>1 = No control at all</span><span>7 = Full control</span></div>
+          <div class="anch"><span>1 = No control at all</span><span>7 = Full control</span></div></div>
+        <div class="row"><span class="btn">Continue</span></div>
+      </div>
+    </div>
+    <div class="rail">
+      <h4>Recorded</h4>
+      <ul>
+        <li>Prompt engineering competence: item-level scores and total</li>
+        <li>General algorithmic literacy: item-level scores and total (once items are fixed)</li>
+        <li>Familiarity rating for each of the six candidate scenes</li>
+        <li>Text-to-image experience, field of work, years of experience</li>
+        <li>Perceived autonomy, pre-test score (if enabled)</li>
+        <li>Time spent on this screen
+      </ul>
+      <h4 style="margin-top:12px">Then performed by the system</h4>
+      <ul>
+        </li><li>Whether the participant is in the weaker- or stronger-brief-mismatch group.<b>Assigned per participant; all four tasks use the same condition</b></li>
+        <li>Which four tasks were drawn, and in what order</li>
+        <li>Which tasks were excluded for insufficient familiarity</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 03 -->
+<section class="scr">
+  <div class="hd"><span class="no">03</span><h3>Creative brief</h3><span class="st">Brief</span></div>
+  <p class="sub">A read-only screen. The brief is shown verbatim from configuration and must not be rewritten or supplemented with examples at any point.</p>
+  <div class="pair">
+    <div class="dev">
+      <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span>/task/1/brief</span></div>
+      <div class="body">
+        <p class="tt">Task 1 of 4 Creative brief</p>
+        <div class="card"><div class="lb">Creative brief</div>
+          <p class="q" style="margin:0">Produce a recruitment image for a Scottish financial institution. It shows a female finance professional at work in an office, framed full-length from head to shoes. She wears comfortable, practical, flat footwear suitable for standing and walking throughout the working day.</p></div>
+        <p class="note">No input controls</p>
+        <div class="row"><span class="btn">I have read the brief, continue</span></div>
+      </div>
+    </div>
+    <div class="rail">
+      <h4>Recorded</h4>
+      <ul><li>Which task this is, and its position in the sequence</li><li>Which initial image was drawn for this participant</li><li>Time spent on the brief screen</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- 04 -->
+<section class="scr">
+  <div class="hd"><span class="no">04</span><h3>Initial image and questions</h3><span class="st">Image and questions · fully locked</span></div>
+  <p class="sub">The image comes first, then the questions, all of which are about that image. Groups a, b and c appear in fixed order; each question appears only once the previous one is answered, and answers cannot be revised. This is the most important screen in the study.</p>
+  <div class="pair">
+    <div class="dev">
+      <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span>/task/1/observe</span></div>
+      <div class="body">
+        <div class="img">Initial model-generated image (drawn at random from the stimulus pool)</div>
+        <div class="ta"><div class="ph">Prompt editor (disabled)</div></div>
+        <div class="row" style="margin-top:0">
+          <span class="btn off">Generate</span><span class="btn off">Submit</span>
+        </div>
+        <p class="note">Controls stay visible but greyed out, so participants can see the functions exist and are unavailable at this point</p>
+        <div class="card" style="margin-top:16px"><div class="lb">Answered in order; each question appears only after the previous one</div>
+          <p class="q">a When you look at this image, what do you notice first?</p>
+          <div class="ta"></div>
+          <p class="q">a cont. Anything else?<span style="color:var(--ink3)">(repeated until the participant has nothing further to add)</span></p>
+          <div class="ta sm"></div>
+          <div class="row" style="margin:0 0 12px"><span class="btn gh">Nothing else</span></div>
+          <p class="q">b If it were up to you, would you keep this image or revise it? Why?</p>
+          <div class="ta"></div>
+          <p class="q">c1 Does this image meet the specific requirements stated in the creative brief?</p>
+          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i></div>
+          <div class="anch"><span>1 = Not at all</span><span>7 = Fully</span></div>
+          <p class="q">c2 Does this image achieve the communication purpose the creative brief is meant to serve?</p>
+          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i></div>
+          <div class="anch"><span>1 = Not achieved at all</span><span>7 = Fully achieved</span></div>
+          <p class="q">c3 Does this image need to be revised?</p>
+          <div class="scale"><i>Yes</i><i>No</i></div>
+          <p class="q">c4 How difficult do you expect it to be to bring this image into line with the creative brief?</p>
+          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i></div>
+          <div class="anch"><span>1 = Not difficult at all</span><span>7 = Very difficult</span></div>
+          <p class="q">c5 How many minutes do you expect it to take to revise this image so that it meets the creative brief?</p>
+          <div class="num"><span></span><em>minutes</em></div>
+          <p class="q">c6 How many further generations do you expect to need before you have a result you would submit?</p>
+          <div class="num"><span></span><em>generations (non-negative integer)</em></div>
+        </div>
+        <div class="row"><span class="btn">Continue</span></div>
+      </div>
+    </div>
+    <div class="rail">
+      <h4>Recorded</h4>
+      <ul>
+        <li>When the image was displayed</li>
+        <li>Full text of the answer to a</li>
+        <li>Number of follow-up rounds, and the full text of each</li>
+        <li>Full text of the answer to b</li>
+        <li>c1 requirement fit, c2 communication purpose, c3 need for revision, each recorded separately</li>
+        <li>Anticipated repair difficulty<br><code>anticipated_repair_difficulty</code></li>
+        <li>Anticipated time, in minutes<br><code>anticipated_repair_time_minutes</code></li>
+        <li>Anticipated number of regenerations, non-negative integer<br><code>anticipated_regeneration_count</code></li>
+        <li>Time spent on each question</li>
+      </ul>
+      <h4 style="margin-top:12px">Disabled at this stage</h4>
+      <ul><li>Prompt editing</li><li>Regeneration</li><li>Submit</li><li>Replacing or uploading an image</li></ul>
+    </div>
+  </div>
+  <div class="warn"><b>No wording in questions a or b may contain “representation”, “culture”, “bias” or any synonym. Enforce this with an automated test.</b></div>
+  <div class="pend"><b>The question about the social or cultural impression the image conveys does not belong on this screen.</b>It would shape the repair behaviour that follows. If it is asked at all, it belongs after the task ends (see screen 07).</div>
+</section>
+
+<!-- 05 -->
+<section class="scr">
+  <div class="hd"><span class="no">05</span><h3>Voluntary repair intention</h3><span class="st">Intention</span></div>
+  <p class="sub">Intention only; the task does not end here. Participants who choose to abandon still continue to the next screen.</p>
+  <div class="pair">
+    <div class="dev">
+      <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span>/task/1/intention</span></div>
+      <div class="body">
+        <p class="tt">If it were entirely up to you, what would you do next?</p>
+        <div class="opt">○ Submit this image to the client as it is</div>
+        <div class="opt">○ Revise it</div>
+        <div class="opt">○ Abandon this task</div>
+        <div class="warn" style="margin:14px 0 0"><b>The screen must state:</b>This question asks only what you would do. Whichever option you choose, the next step will ask you to make one revision.</div>
+        <div class="row"><span class="btn">Continue</span></div>
+      </div>
+    </div>
+    <div class="rail">
+      <h4>Recorded</h4>
+      <ul><li>Whether submit, revise or abandon was chosen</li><li>When the choice was made, and time spent on this screen</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- 06 -->
+<section class="scr">
+  <div class="hd"><span class="no">06</span><h3>Repair screen</h3><span class="st">Mandated repair → free repair</span></div>
+  <p class="sub">One screen, two stages. Submission is unavailable until the mandated repair is complete; the Submit button becomes active only afterwards.</p>
+  <div class="pair">
+    <div class="dev">
+      <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span>/task/1/repair</span></div>
+      <div class="body">
+        <div class="img">Current image (replaced after each generation)</div>
+        <div class="card" style="margin-top:0"><div class="lb">Creative brief (always visible)</div>
+          <p class="q" style="margin:0;font-size:12.5px;color:var(--ink2)">… She wears comfortable, practical, flat footwear suitable for standing and walking throughout the working day.</p></div>
+        <div class="ta" style="height:64px"><div class="ph">Prompt (editable, pre-filled with the full initial prompt)</div></div>
+        <div class="row" style="margin-top:0">
+          <span class="btn">Generate</span>
+          <span class="btn off">Submit</span>
+          <span class="btn gh">Abandon</span>
+        </div>
+        <p class="note">Mandated repair stage: Submit is disabled. It unlocks only after the prompt has been changed at least once and one new image has been generated successfully.</p>
+        <div class="card" style="margin-top:16px"><div class="lb">Generation history (visible to the participant)</div>
+          <p class="q" style="margin:0;font-size:12.5px;color:var(--ink2)">Version 1 thumbnail · Version 2 thumbnail · Version 3 thumbnail</p>
+          <p class="note" style="margin-top:8px">Shows only the participant's own generations; no wording suggestions and no prompt recommendations</p></div>
+      </div>
+    </div>
+    <div class="rail">
+      <h4>Recorded at every Generate</h4>
+      <ul>
+        <li><b>The full prompt submitted with this request</b>, stored as complete text, never as a diff</li>
+        <li>When Generate was selected</li>
+        <li>When the image was returned</li>
+        <li>Generation count incremented</li>
+        <li>The resulting image, stored and identified</li>
+        <li>Model version, generation parameters, seed</li>
+      </ul>
+      <h4 style="margin-top:12px">Timing</h4>
+      <ul>
+        <li>Timing starts on entering the repair screen</li>
+        <li><b>The wait between Generate and the image returning must be excluded</b>; the participant is not working during it</li>
+        <li>Tab-away and idle intervals are recorded separately</li>
+      </ul>
+      <h4 style="margin-top:12px">Condition for completing the mandated repair</h4>
+      <ul><li>The prompt differs from the initial version<b> and </b>at least one new image has been generated successfully. Submit unlocks only when both hold</li></ul>
+      <h4 style="margin-top:12px">How continued repair is determined</h4>
+      <ul><li>After the mandated generation, generations the participant issues<b>of their own accord</b>— the second and any further ones — are recorded as continued repair</li><li>The system must not prompt or encourage further revision in any way</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- 07 -->
+<section class="scr">
+  <div class="hd"><span class="no">07</span><h3>Task complete and transition</h3><span class="st">Task end</span></div>
+  <p class="sub">Three ways to end: submit, abandon, or reach the task limit. Reasons are asked afterwards.</p>
+  <div class="pair">
+    <div class="dev">
+      <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span>/task/1/done</span></div>
+      <div class="body">
+        <p class="tt">Task ended</p>
+        <p class="tx">The heading changes with the actual outcome: Task submitted / Task abandoned / Task limit reached.</p>
+        <div class="card"><div class="lb">Questions after the task ends</div>
+          <p class="q">Why did you stop here, or carry on revising?</p>
+          <div class="ta"></div>
+          <p class="q">To what extent do you think the revised result meets the specific requirements of the creative brief?</p>
+          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i></div>
+          <div class="anch"><span>1 = Not at all</span><span>7 = Fully</span></div>
+          <p class="q" style="border-left:3px solid #b8860b;padding-left:10px;margin-left:-13px">What social or cultural impression do you think the final image conveys?<span class="tag">Inclusion pending</span></p>
+          <div class="ta"></div></div>
+        <div class="row"><span class="btn">Go to Task 2</span></div>
+      </div>
+    </div>
+    <div class="rail">
+      <h4>Recorded</h4>
+      <ul>
+        <li>How the task ended: submitted, abandoned, or task limit reached</li>
+        <li>Full text of the reason for stopping or continuing</li>
+        <li>Rating of how far the result meets the brief<br><code>post_repair_brief_fit</code></li>
+        <li>Full text of the social or cultural impression answer (if enabled)<br><code>post_task_social_cultural_impression</code></li>
+        <li>Which image was finally submitted</li>
+        <li>Task totals: active time, successful generations, failed requests, number of prompt versions</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="rep">
+  <h3>Tasks 2, 3 and 4</h3>
+  <p>Screen for screen identical to Task 1: creative brief → initial image and questions → intention → repair → task complete. The only differences are the task content and the stimulus drawn. Task order is randomised within participant, but the mismatch condition (weaker or stronger) stays fixed for the whole session.</p>
+</div>
+
+<!-- 23 -->
+<section class="scr">
+  <div class="hd"><span class="no">23</span><h3>Post-test</h3><span class="st">After all tasks</span></div>
+  <p class="sub">Fixed position; it may not be brought forward.</p>
+  <div class="pair">
+    <div class="dev">
+      <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span>/posttest</span></div>
+      <div class="body">
+        <div class="card"><div class="lb">Knowledge of text-to-image bias: pilot items, to be finalised before the main study</div>
+
+          <p class="q"><b>Q1</b> When a prompt does not specify a person's gender, what may happen in a text-to-image model's output?</p>
+          <div class="opt">○ Genders always appear in even proportions</div>
+          <div class="opt">○ Certain occupations or scenes skew systematically towards one gender</div>
+          <div class="opt">○ Gender is determined entirely by the random seed</div>
+          <div class="opt">○ The model does not generate people</div>
+          <div class="opt">○ Not sure</div>
+
+          <p class="q" style="margin-top:16px"><b>Q2</b> When a prompt does not specify a country or region, what may characterise the scenes a model generates?</p>
+          <div class="opt">○ An even spread across the world</div>
+          <div class="opt">○ Concentration on the visual environment of a few countries or regions</div>
+          <div class="opt">○ No regional features at all</div>
+          <div class="opt">○ Determined entirely by the random seed</div>
+          <div class="opt">○ Not sure</div>
+
+          <p class="q" style="margin-top:16px"><b>Q3</b> What may influence the visual representations that recur in a text-to-image model?</p>
+          <div class="opt">○ Training data alone</div>
+          <div class="opt">○ Prompt wording alone</div>
+          <div class="opt">○ Training data, model design, prompt wording and generation settings acting together</div>
+          <div class="opt">○ Entirely random, with no systematic source</div>
+          <div class="opt">○ Not sure</div>
+        </div>
+        <div class="warn"><b>Option order is randomised across participants for all three items; “Not sure” may stay in last position.</b></div>
+        <div class="card"><div class="lb">Perceived autonomy (optional module, controlled by configuration)</div>
+          <p class="q">How far do you feel you can control the direction of what is generated</p>
+          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i></div></div>
+        <div class="row"><span class="btn">Submit</span></div>
+      </div>
+    </div>
+    <div class="rail">
+      <h4>Recorded</h4>
+      <ul>
+        <li>Which option was chosen for each of the three items<br><code>bias_knowledge_q1–q3_response</code></li>
+        <li>The order in which options were shown for each item<br><code>bias_knowledge_q1–q3_option_order</code></li>
+        <li>Total score<br><code>bias_knowledge_total_score</code></li>
+        <li>Perceived autonomy, post-test score (if enabled)</li>
+      </ul>
+      <h4 style="margin-top:12px">Note</h4>
+      <ul><li>Algorithmic literacy was measured in the pre-test and is not repeated here</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- 24 -->
+<section class="scr">
+  <div class="hd"><span class="no">24</span><h3>Debrief and exit</h3><span class="st">Session end</span></div>
+  <div class="pair">
+    <div class="dev">
+      <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span>/complete</span></div>
+      <div class="body">
+        <p class="tt">Thank you for taking part in this study</p>
+        <p class="tx">A full statement of the study's purpose, how payment is made, how data are used and stored, contact details for withdrawing data, and the completion code.</p>
+        <div class="row"><span class="btn">Finish</span></div>
+      </div>
+    </div>
+    <div class="rail">
+      <h4>Recorded</h4>
+      <ul><li>When the session was completed</li><li>Completion code issued to the participant</li><li>Total session duration</li><li>Which configuration version was in force</li></ul>
+    </div>
+  </div>
+</section>
+
+<div class="foot">
+  <p>Screen count: two lead-in screens (01–02), five screens per task making twenty, plus post-test and debrief, giving twenty-four in all.</p>
+  <p>These wireframes specify interface structure, control states and the points at which data are recorded. They do not specify visual styling. Question wording, scale anchors and button labels are taken from the study configuration.</p>
+  <p>The platform does not compute the BRBI, the four perception–intention states, final compliance, or the actual repair strategy; these are coded by the researchers afterwards. The platform is responsible only for recording and exporting the raw data in full and in a linkable form.</p>
+</div>
+</div>
+
+</body>
+</html>

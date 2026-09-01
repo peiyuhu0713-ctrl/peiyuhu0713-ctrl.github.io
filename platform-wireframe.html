@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>实验平台界面流程</title>
+<meta name="color-scheme" content="light dark">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>实验平台界面流程</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --ground:#f4f5f3; --surface:#fff; --sunk:#eceee9; --rail:#f7f4ec;
+  --line:#d9dcd5; --line2:#b8bdb3; --line3:#8d948a;
+  --ink:#15181a; --ink2:#555d56; --ink3:#818a80;
+  --live:#1b6b5a; --live-bg:#e2f0eb;
+  --dead:#9aa298; --dead-bg:#e8eae6;
+  --log:#7a5610; --log-bg:#faf2df; --log-line:#e2cf9f;
+  --sans:"IBM Plex Sans","PingFang SC","Hiragino Sans GB",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#101211; --surface:#181b19; --sunk:#202320; --rail:#1d1a14;
+  --line:#2b2f2c; --line2:#414741; --line3:#606860;
+  --ink:#e7eae6; --ink2:#a3aba4; --ink3:#79817a;
+  --live:#5fbfa4; --live-bg:#122b25;
+  --dead:#6b736a; --dead-bg:#232622;
+  --log:#d3ab5d; --log-bg:#221c10; --log-line:#4a3d21;}}
+:root[data-theme="dark"]{
+  --ground:#101211; --surface:#181b19; --sunk:#202320; --rail:#1d1a14;
+  --line:#2b2f2c; --line2:#414741; --line3:#606860;
+  --ink:#e7eae6; --ink2:#a3aba4; --ink3:#79817a;
+  --live:#5fbfa4; --live-bg:#122b25;
+  --dead:#6b736a; --dead-bg:#232622;
+  --log:#d3ab5d; --log-bg:#221c10; --log-line:#4a3d21;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:2px solid var(--live);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+
+.mast{background:var(--surface);border-bottom:1px solid var(--line2)}
+.mast .wrap{padding:30px 22px 20px}
+.mast h1{margin:0;font-size:26px;font-weight:600;letter-spacing:-.01em}
+.mast p{margin:8px 0 0;color:var(--ink2);max-width:62ch}
+.legend{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:12px;color:var(--ink2)}
+.legend b{display:inline-flex;align-items:center;gap:6px;font-weight:400}
+.sw{width:22px;height:12px;border-radius:2px;border:1px solid var(--line2)}
+.sw.a{background:var(--live-bg);border-color:var(--live)}
+.sw.b{background:var(--dead-bg);border-style:dashed}
+.sw.c{background:var(--log-bg);border-color:var(--log-line)}
+
+.flow{margin:26px 0 6px;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:16px 18px}
+.flow h2{margin:0 0 12px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.chip{font-family:var(--mono);font-size:11.5px;padding:4px 9px;border:1px solid var(--line2);border-radius:3px;background:var(--sunk);white-space:nowrap}
+.chip.k{background:var(--live-bg);border-color:var(--live);color:var(--live);font-weight:500}
+.chip.r{background:var(--log-bg);border-color:var(--log-line);color:var(--log)}
+.arw{color:var(--ink3);font-family:var(--mono);font-size:12px}
+
+.scr{margin-top:30px;border-top:2px solid var(--line2);padding-top:18px;scroll-margin-top:12px}
+.hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.no{font-family:var(--mono);font-size:12px;color:var(--live);font-weight:600}
+.hd h3{margin:0;font-size:19px;font-weight:600}
+.st{font-family:var(--mono);font-size:11px;color:var(--ink3);background:var(--sunk);padding:2px 8px;border-radius:3px}
+.sub{margin:0 0 14px;color:var(--ink2);font-size:13.5px;max-width:70ch}
+
+.pair{display:grid;grid-template-columns:1fr 300px;gap:16px}
+@media(max-width:860px){.pair{grid-template-columns:1fr}}
+
+.dev{background:var(--surface);border:1px solid var(--line2);border-radius:5px;overflow:hidden}
+.bar{background:var(--sunk);border-bottom:1px solid var(--line);padding:7px 12px;display:flex;align-items:center;gap:7px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--line2)}
+.bar span{margin-left:6px;font-family:var(--mono);font-size:11px;color:var(--ink3)}
+.body{padding:20px 22px 24px;min-height:190px}
+
+.tt{font-size:16px;font-weight:600;margin:0 0 4px}
+.tx{font-size:13px;color:var(--ink2);margin:0 0 14px;max-width:60ch}
+.card{border:1px solid var(--line);border-radius:4px;padding:12px 14px;margin:10px 0;background:var(--ground)}
+.card .lb{font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink3);margin-bottom:6px}
+.q{font-size:13.5px;margin:0 0 8px}
+.ta{border:1px solid var(--line2);border-radius:3px;background:var(--surface);height:52px;margin-bottom:10px}
+.ta.sm{height:34px}
+.ph{padding:8px 10px;font-size:12px;color:var(--ink3);font-family:var(--mono)}
+.scale{display:flex;gap:6px;margin:6px 0 12px}
+.scale i{flex:1;height:26px;border:1px solid var(--line2);border-radius:3px;background:var(--surface);font-style:normal;
+  display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;color:var(--ink3)}
+.img{border:1px solid var(--line2);border-radius:3px;background:var(--sunk);height:150px;display:flex;
+  align-items:center;justify-content:center;font-family:var(--mono);font-size:11.5px;color:var(--ink3);margin-bottom:12px}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.btn{font-family:var(--sans);font-size:13px;padding:7px 16px;border-radius:3px;border:1px solid var(--live);
+  background:var(--live-bg);color:var(--live);font-weight:500}
+.btn.off{border:1px dashed var(--line2);background:var(--dead-bg);color:var(--dead);font-weight:400}
+.btn.gh{border:1px solid var(--line2);background:transparent;color:var(--ink2)}
+.opt{border:1px solid var(--line2);border-radius:3px;padding:9px 12px;margin-bottom:7px;font-size:13px;background:var(--surface)}
+.note{font-size:11.5px;color:var(--dead);font-family:var(--mono);margin-top:6px}
+
+.rail{background:var(--rail);border:1px solid var(--log-line);border-radius:5px;padding:14px 15px;align-self:start}
+.rail h4{margin:0 0 9px;font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--log)}
+.rail ul{margin:0;padding-left:15px}
+.rail li{font-size:12.5px;color:var(--ink2);margin-bottom:6px;line-height:1.5}
+.rail code{font-family:var(--mono);font-size:11.5px;color:var(--log);background:transparent;padding:0}
+.rail .none{font-size:12.5px;color:var(--ink3);font-style:italic}
+
+.warn{margin-top:12px;border-left:3px solid var(--live);background:var(--live-bg);padding:10px 14px;border-radius:0 3px 3px 0;font-size:13px;color:var(--ink)}
+.warn b{color:var(--live)}
+.pend{border-left:3px solid #b8860b;background:var(--log-bg);padding:10px 14px;border-radius:0 3px 3px 0;font-size:13px;color:var(--ink);margin-top:12px}
+.pend b{color:var(--log)}
+.tag{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.04em;padding:2px 7px;border-radius:2px;background:var(--log-bg);color:var(--log);border:1px solid var(--log-line);vertical-align:2px;margin-left:6px}
+
+.rep{margin-top:30px;border:1px dashed var(--line2);border-radius:5px;background:var(--surface);padding:20px 22px}
+.rep h3{margin:0 0 6px;font-size:17px}
+.rep p{margin:0;color:var(--ink2);font-size:13.5px;max-width:74ch}
+
+.foot{margin-top:40px;border-top:1px solid var(--line2);padding:18px 0 60px;color:var(--ink3);font-size:12.5px;max-width:76ch}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="mast"><div class="wrap">
+  <h1>实验平台界面流程</h1>
+  <p>文生图默认表征与修复成本研究 · 参与者端界面线框图。每一屏标明界面元素、控件在该阶段是否可用，以及后台在该屏记录什么。</p>
+  <div class="legend">
+    <b><span class="sw a"></span>此刻可操作</b>
+    <b><span class="sw b"></span>可见但禁用</b>
+    <b><span class="sw c"></span>后台记录</b>
+  </div>
+</div></div>
+
+<div class="wrap">
+
+<div class="flow">
+  <h2>全程 24 屏</h2>
+  <div class="chips">
+    <span class="chip k">01 欢迎与同意</span><span class="arw">→</span>
+    <span class="chip k">02 前测</span><span class="arw">→</span>
+    <span class="chip r">分配（无界面）</span><span class="arw">→</span>
+    <span class="chip">03 Brief</span><span class="arw">→</span>
+    <span class="chip">04 初始图与提问</span><span class="arw">→</span>
+    <span class="chip">05 意向</span><span class="arw">→</span>
+    <span class="chip">06 修复</span><span class="arw">→</span>
+    <span class="chip">07 提交成功</span>
+    <span class="arw">　×4 任务　→</span>
+    <span class="chip k">23 后测</span><span class="arw">→</span>
+    <span class="chip k">24 致谢</span>
+  </div>
+  <p style="margin:12px 0 0;font-size:13px;color:var(--ink2)">
+    任务 2、3、4 与任务 1 逐屏相同，只有抽到的刺激图不同。下面把一个任务的五屏画全，其余不重复。
+  </p>
+</div>
+
+<!-- 01 -->
+<section class="scr">
+  <div class="hd"><span class="no">01</span><h3>欢迎与知情同意</h3><span class="st">会话开始</span></div>
+  <p class="sub">同意之前不得开始任何记录。</p>
+  <div class="pair">
+    <div class="dev">
+      <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span>/consent</span></div>
+      <div class="body">
+        <p class="tt">关于本研究</p>
+        <p class="tx">研究目的、时长约 60 至 90 分钟、可随时退出、数据如何存储与使用、联系方式。</p>
+        <div class="opt">☐ 我已阅读并同意参与</div>
+        <div class="row"><span class="btn">开始</span></div>
+      </div>
+    </div>
+    <div class="rail">
+      <h4>后台记录</h4>
+      <ul><li>是否勾选同意、勾选的时刻</li><li>同意书的版本号</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- 02 -->
+<section class="scr">
+  <div class="hd"><span class="no">02</span><h3>前测</h3><span class="st">任务开始前</span></div>
+  <p class="sub">熟悉度决定这个人能分到哪几个任务，必须在分配之前问。</p>
+  <div class="pair">
+    <div class="dev">
+      <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span>/pretest</span></div>
+      <div class="body">
+        <div class="card"><div class="lb">量表</div>
+          <p class="q">提示工程能力 九题　·　算法素养短式</p>
+          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i></div></div>
+        <div class="card"><div class="lb">任务熟悉度　六个场景各评一次</div>
+          <p class="q">短租民宿接待</p>
+          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i></div>
+          <p class="q">宗教组织传播</p>
+          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i></div>
+          <p class="q">面向老年人的汽车广告</p>
+          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i></div>
+          <p class="q">职场招聘传播</p>
+          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i></div>
+          <p class="q">职场资历与上下级沟通</p>
+          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i></div>
+          <p class="q">心理健康公益传播</p>
+          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i></div></div>
+        <div class="row"><span class="btn">继续</span></div>
+      </div>
+    </div>
+    <div class="rail">
+      <h4>后台记录</h4>
+      <ul>
+        <li>提示工程能力量表：九题的逐题得分与总分</li>
+        <li>算法素养量表：逐题得分与总分</li>
+        <li>对六个候选场景各自的熟悉度评分</li>
+        <li>文生图使用经验、创意工作背景</li>
+        <li>这一整屏的作答时长
+      </ul>
+      <h4 style="margin-top:12px">随后由系统完成</h4>
+      <ul>
+        <li>分到的是弱不匹配组还是强不匹配组。<b>按人分配，这个人全场四个任务都用同一组</b></li>
+        <li>抽中了哪四个任务、呈现顺序是什么</li>
+        <li>哪些任务因熟悉度不够被排除</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 03 -->
+<section class="scr">
+  <div class="hd"><span class="no">03</span><h3>创意简报</h3><span class="st">读简报</span></div>
+  <p class="sub">只读一屏。简报逐字来自配置，任何环节不得改写或补充示例。</p>
+  <div class="pair">
+    <div class="dev">
+      <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span>/task/1/brief</span></div>
+      <div class="body">
+        <p class="tt">任务 1 / 4　客户简报</p>
+        <div class="card"><div class="lb">Client brief</div>
+          <p class="q" style="margin:0">为一家苏格兰金融机构制作招聘图片。画面中是一名女性金融从业者在办公室工作，全身入镜，从头到鞋清晰可见。她穿着舒适、实用、能站一整天的鞋履。</p></div>
+        <p class="note">无输入控件</p>
+        <div class="row"><span class="btn">我已读完，继续</span></div>
+      </div>
+    </div>
+    <div class="rail">
+      <h4>后台记录</h4>
+      <ul><li>这是第几个任务、是哪个任务</li><li>系统给这个人抽到的是哪一张初始图</li><li>在简报页停留了多久</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- 04 -->
+<section class="scr">
+  <div class="hd"><span class="no">04</span><h3>初始图与提问</h3><span class="st">看图与作答 · 全锁定</span></div>
+  <p class="sub">先出图，再问问题，问题全都是针对这张图问的。三组题按 a → b → c 固定顺序，答完一题才出现下一题，不可回改。这一屏是整个实验最关键的一屏。</p>
+  <div class="pair">
+    <div class="dev">
+      <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span>/task/1/observe</span></div>
+      <div class="body">
+        <div class="img">模型生成的初始图像（从刺激池随机抽取）</div>
+        <div class="ta"><div class="ph">提示词编辑框（禁用）</div></div>
+        <div class="row" style="margin-top:0">
+          <span class="btn off">生成</span><span class="btn off">提交</span>
+        </div>
+        <p class="note">控件可见但置灰，让被试知道这些功能存在、此刻不能用</p>
+        <div class="card" style="margin-top:16px"><div class="lb">依次作答，答完一题才出现下一题</div>
+          <p class="q">a　你看到这张图，first notice 到的是什么？</p>
+          <div class="ta"></div>
+          <p class="q">a-续　还注意到别的吗？<span style="color:var(--ink3)">（反复追问直到被试说没有了）</span></p>
+          <div class="ta sm"></div>
+          <div class="row" style="margin:0 0 12px"><span class="btn gh">没有其他了</span></div>
+          <p class="q">b　如果由你决定，你会保留这张图还是修改它？为什么？</p>
+          <div class="ta"></div>
+          <p class="q">c1　这张图满足简报里写的那些具体要求了吗</p>
+          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i></div>
+          <p class="q">c2　这张图达成了简报想要的传播目的吗</p>
+          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i></div>
+          <p class="q">c3　这张图需要修改吗</p>
+          <div class="scale"><i>是</i><i>否</i></div>
+          <p class="q">c4　预期难度 / 预期耗时 / 预期生成次数</p>
+          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i></div>
+        </div>
+        <div class="row"><span class="btn">继续</span></div>
+      </div>
+    </div>
+    <div class="rail">
+      <h4>后台记录</h4>
+      <ul>
+        <li>图像呈现的时刻</li>
+        <li>a 题的回答全文</li>
+        <li>「还有别的吗」一共追问了几轮，每轮的回答全文</li>
+        <li>b 题的回答全文</li>
+        <li>c 组四项评分：是否满足具体要求、是否达成传播目的、是否需要修改、预期成本三项</li>
+        <li>每一题各花了多久</li>
+      </ul>
+      <h4 style="margin-top:12px">此阶段必须禁用</h4>
+      <ul><li>提示词编辑</li><li>重新生成</li><li>提交</li><li>换图 / 上传</li></ul>
+    </div>
+  </div>
+  <div class="warn"><b>a、b 两题的任何文字里不得出现「表征」「文化」「偏见」及同义词，写成自动化测试。</b></div>
+  <div class="pend"><b>「这张图传达了什么社会或文化印象」这道题不放在这一屏。</b>它会影响接下来的修复行为。这道题若要问，放在任务结束之后（见第 07 屏）。</div>
+</section>
+
+<!-- 05 -->
+<section class="scr">
+  <div class="hd"><span class="no">05</span><h3>自愿修复意向</h3><span class="st">意向</span></div>
+  <p class="sub">只记录意向，不结束任务。选「放弃」的人也照样进入下一屏。</p>
+  <div class="pair">
+    <div class="dev">
+      <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span>/task/1/intention</span></div>
+      <div class="body">
+        <p class="tt">如果完全由你决定，你接下来会</p>
+        <div class="opt">○　直接把这张图交给客户</div>
+        <div class="opt">○　修改它</div>
+        <div class="opt">○　放弃这个任务</div>
+        <div class="warn" style="margin:14px 0 0"><b>界面必须写明：</b>这一步只是询问你的想法，无论选哪一项，下一步都会请你实际操作一次。</div>
+        <div class="row"><span class="btn">继续</span></div>
+      </div>
+    </div>
+    <div class="rail">
+      <h4>后台记录</h4>
+      <ul><li>选的是直接提交、修改、还是放弃</li><li>做出选择的时刻，以及在这一屏停留了多久</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- 06 -->
+<section class="scr">
+  <div class="hd"><span class="no">06</span><h3>修复界面</h3><span class="st">强制修复 → 自由修复</span></div>
+  <p class="sub">同一个界面，两个阶段。强制修复完成之前不能提交；完成之后提交按钮才亮起。</p>
+  <div class="pair">
+    <div class="dev">
+      <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span>/task/1/repair</span></div>
+      <div class="body">
+        <div class="img">当前图像（每次生成后替换）</div>
+        <div class="card" style="margin-top:0"><div class="lb">Client brief（始终可见）</div>
+          <p class="q" style="margin:0;font-size:12.5px;color:var(--ink2)">…她穿着舒适、实用、能站一整天的鞋履。</p></div>
+        <div class="ta" style="height:64px"><div class="ph">提示词（可编辑，预填初始提示词全文）</div></div>
+        <div class="row" style="margin-top:0">
+          <span class="btn">生成</span>
+          <span class="btn off">提交</span>
+          <span class="btn gh">放弃</span>
+        </div>
+        <p class="note">强制修复阶段：提交禁用。至少改一次提示词并成功生成一张新图之后才解锁。</p>
+        <div class="card" style="margin-top:16px"><div class="lb">生成历史（被试可见）</div>
+          <p class="q" style="margin:0;font-size:12.5px;color:var(--ink2)">第 1 版　缩略图　·　第 2 版　缩略图　·　第 3 版　缩略图</p>
+          <p class="note" style="margin-top:8px">只显示自己生成过的图，不提供任何措辞建议或历史提示词推荐</p></div>
+      </div>
+    </div>
+    <div class="rail">
+      <h4>每次点「生成」都要记</h4>
+      <ul>
+        <li><b>这一次送出去的提示词全文</b>，要存完整文本，不能只存改动的部分</li>
+        <li>点下生成按钮的时刻</li>
+        <li>图片返回的时刻</li>
+        <li>生成次数加一</li>
+        <li>这一次生成出来的图，存下来并编号</li>
+        <li>用的模型版本、生成参数、随机种子</li>
+      </ul>
+      <h4 style="margin-top:12px">计时</h4>
+      <ul>
+        <li>计时从进入修复界面那一刻开始</li>
+        <li><b>点了生成到图片回来这段等待，必须从时长里扣掉</b>——这段人没有在操作</li>
+        <li>切走标签页、长时间没动作的区间要单独记下来</li>
+      </ul>
+      <h4 style="margin-top:12px">强制修复的通过条件</h4>
+      <ul><li>提示词跟一开始那版不一样了，<b>并且</b>至少成功生成出一张新图。两个都满足，提交按钮才亮</li></ul>
+      <h4 style="margin-top:12px">「继续修复」怎么判定</h4>
+      <ul><li>强制那一次做完之后，这个人<b>自己主动</b>又点的第二次、第三次生成，记为「继续修复」</li><li>系统不能用任何方式提示或鼓励他继续改</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- 07 -->
+<section class="scr">
+  <div class="hd"><span class="no">07</span><h3>提交成功与任务衔接</h3><span class="st">任务结束</span></div>
+  <p class="sub">三种结束方式：提交、放弃、达到上限。结束后追问原因。</p>
+  <div class="pair">
+    <div class="dev">
+      <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span>/task/1/done</span></div>
+      <div class="body">
+        <p class="tt">任务 1 已提交</p>
+        <div class="card"><div class="lb">结束后追问</div>
+          <p class="q">你为什么在这里停下 / 继续修改？</p>
+          <div class="ta"></div>
+          <p class="q">你觉得修改后的结果达到简报要求了吗？<span class="tag">量表还是开放题待定</span></p>
+          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i></div>
+          <p class="q" style="border-left:3px solid #b8860b;padding-left:10px;margin-left:-13px">你觉得这张图传达了什么样的社会或文化印象？<span class="tag">待定，从修复前移到这里</span></p>
+          <div class="ta"></div></div>
+        <div class="row"><span class="btn">进入任务 2</span></div>
+      </div>
+    </div>
+    <div class="rail">
+      <h4>后台记录</h4>
+      <ul>
+        <li>这个任务是怎么结束的：提交了、放弃了、还是到了上限</li>
+        <li>「为什么在这里停下 / 继续改」的回答全文</li>
+        <li>对修复结果的自我判断</li>
+        <li>社会文化印象题的回答全文（若启用）</li>
+        <li>最后交出去的是哪一张图</li>
+        <li>本任务合计：主动操作时长、成功生成几次、失败几次、一共改了几版提示词</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="rep">
+  <h3>任务 2、3、4</h3>
+  <p>与任务 1 逐屏相同：Brief → 初始图与提问 → 意向 → 修复 → 提交成功。唯一的差别是任务内容和抽到的刺激图。四个任务的顺序在被试内部随机，但 mismatch 条件（weaker / stronger）在整场会话中不变。</p>
+</div>
+
+<!-- 23 -->
+<section class="scr">
+  <div class="hd"><span class="no">23</span><h3>后测</h3><span class="st">全部任务之后</span></div>
+  <p class="sub">位置固定，不能提前。</p>
+  <div class="pair">
+    <div class="dev">
+      <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span>/posttest</span></div>
+      <div class="body">
+        <div class="card"><div class="lb">文生图偏差知识　四道单选事实题</div>
+
+          <p class="q"><b>Q1</b>　当提示词没有指定人物性别时，模型生成的结果会怎样？</p>
+          <div class="opt">○　各种性别大致均匀分布</div>
+          <div class="opt">○　每次都随机，没有稳定倾向</div>
+          <div class="opt">○　在某些职业或场景上会稳定偏向某一性别</div>
+          <div class="opt">○　模型会拒绝生成</div>
+          <div class="opt">○　不确定</div>
+          <p class="note">来源：Bianchi et al. 2023；Naik &amp; Nushi 2023</p>
+
+          <p class="q" style="margin-top:16px"><b>Q2</b>　当提示词没有指定国家或地区时，生成的场景通常会怎样？</p>
+          <div class="opt">○　大致均匀覆盖世界各地</div>
+          <div class="opt">○　倾向于少数几个国家的视觉环境</div>
+          <div class="opt">○　完全由随机种子决定，与训练数据无关</div>
+          <div class="opt">○　一律生成没有地域特征的画面</div>
+          <div class="opt">○　不确定</div>
+          <p class="note">来源：Basu et al. 2023</p>
+
+          <p class="q" style="margin-top:16px"><b>Q3</b>　模型输出中反复出现的表征模式，主要来自哪里？</p>
+          <div class="opt">○　主要由训练数据决定，与提示词措辞无关</div>
+          <div class="opt">○　主要由提示词措辞决定，与训练数据无关</div>
+          <div class="opt">○　由训练数据、模型设计、提示词与采样共同作用</div>
+          <div class="opt">○　完全随机，没有系统性来源</div>
+          <div class="opt">○　不确定</div>
+          <p class="note">来源：Seshadri et al. 2024</p>
+
+          <p class="q" style="margin-top:16px"><b>Q4</b>　人看过 AI 生成的图像之后，他对相关群体的判断会怎样？</p>
+          <div class="opt">○　不受影响</div>
+          <div class="opt">○　会朝图像所呈现的分布偏移</div>
+          <div class="opt">○　会朝相反方向变化</div>
+          <div class="opt">○　只有本来就有偏见的人才会受影响</div>
+          <div class="opt">○　不确定</div>
+          <p class="note">来源：Glickman &amp; Sharot 2025</p>
+        </div>
+        <div class="warn"><b>选项顺序在被试之间随机打乱。</b></div>
+        <div class="card"><div class="lb">感知自主性（可选模块，由配置开关控制）</div>
+          <p class="q">你在多大程度上觉得自己能控制生成的方向</p>
+          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i></div></div>
+        <div class="row"><span class="btn">提交</span></div>
+      </div>
+    </div>
+    <div class="rail">
+      <h4>后台记录</h4>
+      <ul><li>四道题各自选了哪一项</li><li>每题的选项呈现顺序</li><li>感知自主性后测得分（若启用）</li></ul>
+      <h4 style="margin-top:12px">注意</h4>
+      <ul><li>算法素养已在前测量过，此处不重复</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- 24 -->
+<section class="scr">
+  <div class="hd"><span class="no">24</span><h3>致谢与退出</h3><span class="st">会话结束</span></div>
+  <div class="pair">
+    <div class="dev">
+      <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span>/complete</span></div>
+      <div class="body">
+        <p class="tt">感谢你参与本研究</p>
+        <p class="tx">研究目的的完整说明、报酬发放方式、数据如何使用与保存、退出与撤回数据的联系方式、完成码。</p>
+        <div class="row"><span class="btn">完成</span></div>
+      </div>
+    </div>
+    <div class="rail">
+      <h4>后台记录</h4>
+      <ul><li>会话完成的时刻</li><li>发给被试的完成码</li><li>全场总时长</li><li>本次实验用的是哪一版配置</li></ul>
+    </div>
+  </div>
+</section>
+
+<div class="foot">
+  <p>屏数：01–02 前置两屏，每个任务五屏共二十屏，后测与致谢两屏，合计二十四屏。</p>
+  <p>本线框图只规定界面结构、控件状态与记录时点，不规定视觉样式。题目文案、量表锚点、按钮文字均以研究配置为准。</p>
+  <p>平台不计算 BRBI、四种感知—意向状态、最终合规度与实际修复策略，这些由研究者事后编码。平台只负责把原始数据完整、可关联地记录并导出。</p>
+</div>
+</div>
+
+</body>
+</html>

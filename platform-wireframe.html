@@ -110,6 +110,10 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
 .warn b{color:var(--live)}
 .pend{border-left:3px solid #b8860b;background:var(--log-bg);padding:10px 14px;border-radius:0 3px 3px 0;font-size:13px;color:var(--ink);margin-top:12px}
 .pend b{color:var(--log)}
+.anch{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;color:var(--ink3);margin:-6px 0 12px}
+.num{display:inline-flex;align-items:center;gap:8px;margin:2px 0 12px}
+.num span{border:1px solid var(--line2);border-radius:3px;background:var(--surface);width:78px;height:30px}
+.num em{font-style:normal;font-family:var(--mono);font-size:11.5px;color:var(--ink3)}
 .tag{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.04em;padding:2px 7px;border-radius:2px;background:var(--log-bg);color:var(--log);border:1px solid var(--log-line);vertical-align:2px;margin-left:6px}
 
 .rep{margin-top:30px;border:1px dashed var(--line2);border-radius:5px;background:var(--surface);padding:20px 22px}
@@ -138,7 +142,7 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
     <span class="chip k">01 欢迎与同意</span><span class="arw">→</span>
     <span class="chip k">02 前测</span><span class="arw">→</span>
     <span class="chip r">分配（无界面）</span><span class="arw">→</span>
-    <span class="chip">03 Brief</span><span class="arw">→</span>
+    <span class="chip">03 创意简报</span><span class="arw">→</span>
     <span class="chip">04 初始图与提问</span><span class="arw">→</span>
     <span class="chip">05 意向</span><span class="arw">→</span>
     <span class="chip">06 修复</span><span class="arw">→</span>
@@ -187,16 +191,22 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
         <div class="card"><div class="lb">任务熟悉度　六个场景各评一次</div>
           <p class="q">短租民宿接待</p>
           <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i></div>
+          <div class="anch"><span>1 = 完全不熟悉</span><span>5 = 非常熟悉</span></div>
           <p class="q">宗教组织传播</p>
           <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i></div>
+          <div class="anch"><span>1 = 完全不熟悉</span><span>5 = 非常熟悉</span></div>
           <p class="q">面向老年人的汽车广告</p>
           <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i></div>
+          <div class="anch"><span>1 = 完全不熟悉</span><span>5 = 非常熟悉</span></div>
           <p class="q">职场招聘传播</p>
           <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i></div>
+          <div class="anch"><span>1 = 完全不熟悉</span><span>5 = 非常熟悉</span></div>
           <p class="q">职场资历与上下级沟通</p>
           <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i></div>
+          <div class="anch"><span>1 = 完全不熟悉</span><span>5 = 非常熟悉</span></div>
           <p class="q">心理健康公益传播</p>
-          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i></div></div>
+          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i></div>
+          <div class="anch"><span>1 = 完全不熟悉</span><span>5 = 非常熟悉</span></div></div>
         <div class="card"><div class="lb">背景</div>
           <p class="q">你用文生图工具多久了、用过哪些</p>
           <div class="ta sm"></div>
@@ -204,7 +214,9 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
           <div class="ta sm"></div></div>
         <div class="card"><div class="lb">感知自主性　可选模块，由配置开关控制</div>
           <p class="q">你在多大程度上觉得自己能控制生成的方向</p>
-          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i></div></div>
+          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i></div>
+          <div class="anch"><span>1 = 完全无法控制</span><span>7 = 能够充分控制</span></div>
+          <div class="anch"><span>1 = 完全无法控制</span><span>7 = 能够充分控制</span></div></div>
         <div class="row"><span class="btn">继续</span></div>
       </div>
     </div>
@@ -220,7 +232,7 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
       </ul>
       <h4 style="margin-top:12px">随后由系统完成</h4>
       <ul>
-        <li>分到的是弱不匹配组还是强不匹配组。<b>按人分配，这个人全场四个任务都用同一组</b></li>
+        </li><li>分到的是弱不匹配组还是强不匹配组。<b>按人分配，这个人全场四个任务都用同一组</b></li>
         <li>抽中了哪四个任务、呈现顺序是什么</li>
         <li>哪些任务因熟悉度不够被排除</li>
       </ul>
@@ -236,8 +248,8 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
     <div class="dev">
       <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span>/task/1/brief</span></div>
       <div class="body">
-        <p class="tt">任务 1 / 4　客户简报</p>
-        <div class="card"><div class="lb">Client brief</div>
+        <p class="tt">任务 1 / 4　创意简报</p>
+        <div class="card"><div class="lb">创意简报</div>
           <p class="q" style="margin:0">为一家苏格兰金融机构制作招聘图片。画面中是一名女性金融从业者在办公室工作，全身入镜，从头到鞋清晰可见。她穿着舒适、实用、能站一整天的鞋履。</p></div>
         <p class="note">无输入控件</p>
         <div class="row"><span class="btn">我已读完，继续</span></div>
@@ -265,25 +277,28 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
         </div>
         <p class="note">控件可见但置灰，让被试知道这些功能存在、此刻不能用</p>
         <div class="card" style="margin-top:16px"><div class="lb">依次作答，答完一题才出现下一题</div>
-          <p class="q">a　你看到这张图，first notice 到的是什么？</p>
+          <p class="q">a　当你看到这张图时，你首先注意到什么？</p>
           <div class="ta"></div>
           <p class="q">a-续　还注意到别的吗？<span style="color:var(--ink3)">（反复追问直到被试说没有了）</span></p>
           <div class="ta sm"></div>
           <div class="row" style="margin:0 0 12px"><span class="btn gh">没有其他了</span></div>
           <p class="q">b　如果由你决定，你会保留这张图还是修改它？为什么？</p>
           <div class="ta"></div>
-          <p class="q">c1　这张图满足简报里写的那些具体要求了吗</p>
+          <p class="q">c1　这张图满足创意简报里写的那些具体要求了吗</p>
           <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i></div>
-          <p class="q">c2　这张图达成了简报想要的传播目的吗</p>
+          <div class="anch"><span>1 = 完全不满足</span><span>7 = 完全满足</span></div>
+          <p class="q">c2　这张图达成了创意简报想要的传播目的吗</p>
           <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i></div>
+          <div class="anch"><span>1 = 完全没有达成</span><span>7 = 完全达成</span></div>
           <p class="q">c3　这张图需要修改吗</p>
           <div class="scale"><i>是</i><i>否</i></div>
-          <p class="q">c4　你预计要把这张图改到符合简报，有多难</p>
+          <p class="q">c4　你预计要把这张图改到符合创意简报，有多困难</p>
           <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i></div>
-          <p class="q">c5　你预计要花多少时间</p>
-          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i></div>
-          <p class="q">c6　你预计要重新生成几次</p>
-          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i></div>
+          <div class="anch"><span>1 = 完全不困难</span><span>7 = 非常困难</span></div>
+          <p class="q">c5　你预计需要花多少分钟，才能把这张图修改到符合创意简报的要求？</p>
+          <div class="num"><span></span><em>分钟</em></div>
+          <p class="q">c6　你预计还需要重新生成多少次，才能得到可以提交的结果？</p>
+          <div class="num"><span></span><em>次（非负整数）</em></div>
         </div>
         <div class="row"><span class="btn">继续</span></div>
       </div>
@@ -295,7 +310,10 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
         <li>a 题的回答全文</li>
         <li>「还有别的吗」一共追问了几轮，每轮的回答全文</li>
         <li>b 题的回答全文</li>
-        <li>c1 到 c6 六项评分逐项分开记：满足具体要求、达成传播目的、是否需要修改、预期难度、预期耗时、预期生成次数</li>
+        <li>c1 满足具体要求、c2 达成传播目的、c3 是否需要修改，逐项分开记</li>
+        <li>预期修复难度<br><code>anticipated_repair_difficulty</code></li>
+        <li>预期耗时，单位分钟<br><code>anticipated_repair_time_minutes</code></li>
+        <li>预期重新生成次数，非负整数<br><code>anticipated_regeneration_count</code></li>
         <li>每一题各花了多久</li>
       </ul>
       <h4 style="margin-top:12px">此阶段必须禁用</h4>
@@ -338,7 +356,7 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
       <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span>/task/1/repair</span></div>
       <div class="body">
         <div class="img">当前图像（每次生成后替换）</div>
-        <div class="card" style="margin-top:0"><div class="lb">Client brief（始终可见）</div>
+        <div class="card" style="margin-top:0"><div class="lb">创意简报（始终可见）</div>
           <p class="q" style="margin:0;font-size:12.5px;color:var(--ink2)">…她穿着舒适、实用、能站一整天的鞋履。</p></div>
         <div class="ta" style="height:64px"><div class="ph">提示词（可编辑，预填初始提示词全文）</div></div>
         <div class="row" style="margin-top:0">
@@ -389,9 +407,10 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
         <div class="card"><div class="lb">结束后追问</div>
           <p class="q">你为什么在这里停下 / 继续修改？</p>
           <div class="ta"></div>
-          <p class="q">你觉得修改后的结果达到简报要求了吗？<span class="tag">量表还是开放题待定</span></p>
-          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i></div>
-          <p class="q" style="border-left:3px solid #b8860b;padding-left:10px;margin-left:-13px">你觉得这张图传达了什么样的社会或文化印象？<span class="tag">待定，从修复前移到这里</span></p>
+          <p class="q">你认为修改后的结果在多大程度上满足了创意简报中的具体要求？</p>
+          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i></div>
+          <div class="anch"><span>1 = 完全不满足</span><span>7 = 完全满足</span></div>
+          <p class="q" style="border-left:3px solid #b8860b;padding-left:10px;margin-left:-13px">你认为最终这张图传达了怎样的社会或文化印象？<span class="tag">是否启用待定</span></p>
           <div class="ta"></div></div>
         <div class="row"><span class="btn">进入任务 2</span></div>
       </div>
@@ -401,8 +420,8 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
       <ul>
         <li>这个任务是怎么结束的：提交了、放弃了、还是到了上限</li>
         <li>「为什么在这里停下 / 继续改」的回答全文</li>
-        <li>对修复结果的自我判断</li>
-        <li>社会文化印象题的回答全文（若启用）</li>
+        <li>对修复结果满足简报要求程度的评分<br><code>post_repair_brief_fit</code></li>
+        <li>社会文化印象题的回答全文（若启用）<br><code>post_task_social_cultural_impression</code></li>
         <li>最后交出去的是哪一张图</li>
         <li>本任务合计：主动操作时长、成功生成几次、失败几次、一共改了几版提示词</li>
       </ul>
@@ -412,7 +431,7 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
 
 <div class="rep">
   <h3>任务 2、3、4</h3>
-  <p>与任务 1 逐屏相同：Brief → 初始图与提问 → 意向 → 修复 → 提交成功。唯一的差别是任务内容和抽到的刺激图。四个任务的顺序在被试内部随机，但 mismatch 条件（weaker / stronger）在整场会话中不变。</p>
+  <p>与任务 1 逐屏相同：创意简报 → 初始图与提问 → 意向 → 修复 → 提交成功。唯一的差别是任务内容和抽到的刺激图。四个任务的顺序在被试内部随机，但 mismatch 条件（weaker / stronger）在整场会话中不变。</p>
 </div>
 
 <!-- 23 -->
@@ -423,42 +442,30 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
     <div class="dev">
       <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span>/posttest</span></div>
       <div class="body">
-        <div class="card"><div class="lb">文生图偏差知识　示例题项，试点前定稿</div>
+        <div class="card"><div class="lb">文生图偏差知识：试点题项，正式实验前定稿</div>
 
-          <p class="q"><b>Q1</b>　当提示词没有指定人物性别时，模型生成的结果会怎样？</p>
-          <div class="opt">○　各种性别大致均匀分布</div>
-          <div class="opt">○　每次都随机，没有稳定倾向</div>
-          <div class="opt">○　在某些职业或场景上会稳定偏向某一性别</div>
-          <div class="opt">○　模型会拒绝生成</div>
+          <p class="q"><b>Q1</b>　当提示词没有指定人物性别时，文生图模型的输出可能出现什么情况？</p>
+          <div class="opt">○　各种性别始终均匀出现</div>
+          <div class="opt">○　在某些职业或场景中系统性地偏向某一性别</div>
+          <div class="opt">○　人物性别完全由随机种子决定</div>
+          <div class="opt">○　模型不会生成人物</div>
           <div class="opt">○　不确定</div>
-          
 
-          <p class="q" style="margin-top:16px"><b>Q2</b>　当提示词没有指定国家或地区时，生成的场景通常会怎样？</p>
-          <div class="opt">○　大致均匀覆盖世界各地</div>
-          <div class="opt">○　倾向于少数几个国家的视觉环境</div>
-          <div class="opt">○　完全由随机种子决定，与训练数据无关</div>
-          <div class="opt">○　一律生成没有地域特征的画面</div>
+          <p class="q" style="margin-top:16px"><b>Q2</b>　当提示词没有指定国家或地区时，模型生成的场景可能呈现什么特点？</p>
+          <div class="opt">○　均匀覆盖世界各地</div>
+          <div class="opt">○　集中呈现少数国家或地区的视觉环境</div>
+          <div class="opt">○　一律不包含地域特征</div>
+          <div class="opt">○　完全由随机种子决定</div>
           <div class="opt">○　不确定</div>
-          
 
-          <p class="q" style="margin-top:16px"><b>Q3</b>　模型输出中反复出现的表征模式，主要来自哪里？</p>
-          <div class="opt">○　主要由训练数据决定，与提示词措辞无关</div>
-          <div class="opt">○　主要由提示词措辞决定，与训练数据无关</div>
-          <div class="opt">○　由训练数据、模型设计、提示词与采样共同作用</div>
+          <p class="q" style="margin-top:16px"><b>Q3</b>　文生图模型中反复出现的视觉表征可能受到哪些因素影响？</p>
+          <div class="opt">○　只受训练数据影响</div>
+          <div class="opt">○　只受提示词措辞影响</div>
+          <div class="opt">○　受到训练数据、模型设计、提示词和生成设置等多种因素共同影响</div>
           <div class="opt">○　完全随机，没有系统性来源</div>
           <div class="opt">○　不确定</div>
-          
-
-          <p class="q" style="margin-top:16px"><b>Q4</b>　人看过 AI 生成的图像之后，他对相关群体的判断会怎样？</p>
-          <div class="opt">○　不受影响</div>
-          <div class="opt">○　会朝图像所呈现的分布偏移</div>
-          <div class="opt">○　会朝相反方向变化</div>
-          <div class="opt">○　只有本来就有偏见的人才会受影响</div>
-          <div class="opt">○　不确定</div>
-          
         </div>
-        <div class="warn"><b>选项顺序在被试之间随机打乱。</b></div>
-        <div class="pend"><b>这四道是示例，措辞未定稿。</b>其中两道对文献的概括过宽，试点前须由研究团队重写并锁定。</div>
+        <div class="warn"><b>三题的选项顺序在参与者之间随机打乱，「不确定」可固定放在最后。</b></div>
         <div class="card"><div class="lb">感知自主性（可选模块，由配置开关控制）</div>
           <p class="q">你在多大程度上觉得自己能控制生成的方向</p>
           <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i></div></div>
@@ -467,7 +474,12 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
     </div>
     <div class="rail">
       <h4>后台记录</h4>
-      <ul><li>四道题各自选了哪一项</li><li>每题的选项呈现顺序</li><li>感知自主性后测得分（若启用）</li></ul>
+      <ul>
+        <li>三道题各自选了哪一项<br><code>bias_knowledge_q1–q3_response</code></li>
+        <li>每题的选项呈现顺序<br><code>bias_knowledge_q1–q3_option_order</code></li>
+        <li>总分<br><code>bias_knowledge_total_score</code></li>
+        <li>感知自主性后测得分（若启用）</li>
+      </ul>
       <h4 style="margin-top:12px">注意</h4>
       <ul><li>算法素养已在前测量过，此处不重复</li></ul>
     </div>

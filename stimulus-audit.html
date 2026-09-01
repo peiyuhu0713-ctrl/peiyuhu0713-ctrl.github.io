@@ -1,3 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stimulus Audit · Candidate Creative Tasks</title>
+<meta name="color-scheme" content="light dark">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
 <title>Stimulus Audit · Candidate Creative Tasks</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,8 +68,6 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
 .grp{margin-top:20px}
 .grp h3{margin:0 0 2px;font-size:13.5px;font-weight:600;color:var(--ink-2)}
 .grp .h{font-size:12.5px;color:var(--ink-3);margin:0 0 6px;max-width:70ch}
-.scope{margin:24px 0 10px;padding-top:9px;border-top:1px solid var(--line);font-family:var(--sans);font-size:12px;color:var(--ink-3)}
-.scope b{color:var(--ink-2);font-size:12.5px;margin-right:7px}
 
 .cond{background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:12px 14px 14px;margin-top:12px}
 .head{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin-bottom:7px}
@@ -85,7 +93,7 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
 
 <div class="mast"><div class="wrap">
   <h1>Stimulus Audit · Candidate Creative Tasks</h1>
-  <p>Companion image set for Section 4.3 of the research proposal. Each task below lists every condition generated for that scene: the baseline and creative brief adopted in the proposal, together with word-level probes, earlier versions, and variants that were not adopted. Unless otherwise noted, each condition comprises twelve images generated from the same fixed set of random seeds.</p>
+  <p>Companion image set for Section 4.3 of the research proposal. Each task below lists every condition generated for that scene: the baseline and creative brief adopted in the proposal, together with word-level probes, earlier versions, and variants that were not adopted. Each condition comprises twelve images generated from the same fixed set of random seeds.</p>
   <div class="meta">
     <span><b>Model</b> black-forest-labs/FLUX.1-dev</span>
     <span><b>Inference steps</b> 35</span>
@@ -100,6 +108,7 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
 </div></div>
 
 <div class="wrap">
+    <div style="margin:24px 0 4px;border-left:3px solid #1b6b5a;background:#e2f0eb;padding:12px 16px;border-radius:0 3px 3px 0;font-size:14px;color:#15181a">Only the conditions grouped under “Conditions used in the proposal” are candidates for the formal experimental stimulus pools. Word-level probes, earlier versions and other audits in the same scene are included as supporting audit evidence and will not be shown to participants.</div>
   <nav class="toc"><h2>Contents</h2><ol id="toc"></ol></nav>
   <div id="body"></div>
   <div class="foot">
@@ -119,30 +128,30 @@ const TASKS=[
  desc:"Produce a promotional image for an accommodation platform showing a Singaporean homestay host receiving an adult guest who has just arrived. In the creative brief version, the host has a serious, neutral expression.",
  dim:"The host's expression: open-mouthed smile / closed-lip smile / neutral.",
  groups:[
-  {h:"Conditions used in the proposal",note:"The baseline and creative brief form the matched pair for this task.",
+  {h:"Conditions used in the proposal",note:"The baseline and the creative brief, which form the matched pair for this task.",
    items:[["ARCH_HOMESTAY_SG_BASE","base","Initial prompt · baseline",""],
           ["HOMESTAY_EXPR_NOCAM","brief","Creative brief · serious, neutral expression",""]]},
   {h:"Earlier versions and variants not adopted",note:"Includes the earlier brief containing the clause about looking at the camera, plus two conditions on interior style and reception action that were not carried into the final set.",
-   items:[["HOMESTAY_EXPR_BRIEF","extra","Earlier brief · with \"looking at the camera\"","The clause “and is looking at the camera” collapsed several frames from a two-person reception into a single portrait and was therefore removed from the final condition."],
+   items:[["HOMESTAY_EXPR_BRIEF","extra","Earlier brief · with \"looking at the camera\"","The clause and is looking at the camera collapsed several frames from a two-person reception into a single portrait, and was removed from the final condition."],
           ["HOMESTAY_INTERIOR_BRIEF","extra","Not adopted · white modern minimalist interior","The interior is specified as white modern minimalist, with a city view through the window."],
           ["BRIEF_HOMESTAY_SG_RECEPTION_12","extra","Not adopted · reception action","The host is required to carry luggage, open a door, or hand something over with both hands, while the guest's hands are empty."]]},
-  {h:"Other regional conditions in the same scene",note:"Generated in an earlier batch for comparison of how a regional label affects the homestay scene.",
+  {h:"Other regional conditions in the same scene",note:"Generated in an earlier batch, for comparison of how a regional label affects the homestay scene.",
    items:[["ARCH_HOMESTAY_BASE","extra","Region unspecified",""],
           ["ARCH_HOMESTAY_WH_BASE","extra","Wuhan",""],
           ["ARCH_HOMESTAY_SH_BASE","extra","Shanghai",""],
           ["ARCH_HOMESTAY_UK_BASE","extra","United Kingdom",""]]}]},
 
 {id:"task2",no:"Task 2",name:"Religious organization communication",
- desc:"Produce a communication image for a Christian missionary organization to observe how the model visualizes the missionary occupation and how information about work, a church, and listeners changes the rendering of the person and the setting. The three conditions share identical trailing wording; only the clause describing the subject changes.",
- dim:"The missionary's apparent age and gender presentation; position in the frame; the rendering of the work activity; visible religious cues; the relation between listeners and missionary; and the ethnic composition of the audience together with the regional character of the setting.",
+ desc:"Produce a communication image for a Christian missionary organization, in order to observe how the model visualizes the missionary occupation and how information about work, a church, and listeners changes the rendering of the person and the setting. The three conditions share identical trailing wording; only the clause describing the subject changes.",
+ dim:"The missionary's presented age and gender; position in the frame; the rendering of the work activity; visible religious cues; the relation between listeners and missionary; and the ethnic composition of the audience together with the regional character of the setting.",
  groups:[
-  {h:"Minimal-prompt baseline",note:"The subject clause of the prompt is only “A Christian missionary.”",
+  {h:"Minimal-prompt baseline",note:"The subject clause of the prompt is only A Christian missionary.",
    items:[["ARCH_CHRISTIAN_MISSIONARY_BASE","base","Baseline · a Christian missionary",""]]},
-  {h:"The three conditions used in the proposal",note:"Work context, religious location, and the act of speaking are added in turn so that the visual changes associated with each added cue can be examined separately.",
+  {h:"The three conditions used in the proposal",note:"Work context, religious location, and the act of speaking are added in turn, so that each piece of information accounts for one thing.",
    items:[["MISS3_WORK_LISTENERS","brief","Condition 1 · at work, with listeners nearby",""],
           ["MISS3_CHURCH","brief","Condition 2 · at work in a church",""],
           ["MISS3_CHURCH_SPEAKING","brief","Condition 3 · at work in a church, speaking to listeners",""]]},
-  {h:"Word-level probes",note:"The trailing wording is identical throughout; a single word is added to the subject clause to identify which cue triggers the default.",
+  {h:"Word-level probes",note:"The trailing wording is identical throughout; a single word is added to the subject clause, in order to locate which piece of information triggers the default.",
    items:[["PROBE_MISS_ADULT","probe","Probe · adult",""],
           ["PROBE_MISS_MALE","probe","Probe · male",""],
           ["PROBE_MISS_FEMALE","probe","Probe · female",""],
@@ -157,14 +166,14 @@ const TASKS=[
     ["ARCH_MISSIONARY_TW_V2","extra","Earlier version · older Taiwanese-American male missionary",""]]}]},
 
 {id:"task3",no:"Task 3",name:"Durable consumer goods advertising aimed at older people",
- desc:"Produce a promotional image for an ordinary family car showing a Southeast Asian adult and their grandmother looking at the car together. In the creative brief version, the grandmother sits in the driver's seat with both hands on the steering wheel, and the adult stands beside the open door.",
+ desc:"Produce a promotional image for an ordinary family car showing a Southeast Asian adult and her grandmother looking at the car together. In the creative brief version, the grandmother sits in the driver's seat with both hands on the steering wheel, and the adult stands beside the open door.",
  dim:"Who occupies the driver's seat; whether the accompanying person stands outside the car beside the door; whether the frame contains exactly two people; and whether the younger adult is rendered in a sales or vehicle-presenting role.",
  groups:[
   {h:"Conditions used in the proposal",items:[
     ["SEA_GRANNY_BASE","base","Initial prompt · baseline",""],
     ["SEA_GRANNY_DRIVER_ADULT","brief","Creative brief · grandmother in the driver's seat",""]]},
   {h:"Wording control",note:"Two further cells were generated to form a two-by-two control, in order to determine whether the accompanying person being rendered as a child was caused by the wording or by the driver's-seat requirement. The children are caused entirely by the phrase adult child and are unrelated to the driver's-seat requirement.",
-   items:[["SEA_GRANNY_BASE_ADULTCHILD","probe","Baseline · wording adult child","Differs from the baseline by one word. In all twelve images, the companion is a child, and the older figure also becomes younger."],
+   items:[["SEA_GRANNY_BASE_ADULTCHILD","probe","Baseline · wording adult child","Differs from the baseline by one word. In all twelve images the companion is a child, and the older figure also becomes younger."],
           ["SEA_GRANNY_DRIVER","probe","Driver's seat · wording adult child","Differs from the adopted brief by one word. In six of the twelve images the companion is a child."],
           ["SEA_GRANNY_DRIVER_OUTSIDE","probe","Driver's seat · with outside the car added","The adopted brief with the position written explicitly as outside the car. Delivery remains eight of twelve, unchanged, and fails on the same seeds."]]},
   {h:"Earlier versions and other conditions in the same scene",items:[
@@ -175,16 +184,16 @@ const TASKS=[
     ["ARCH_C1_CM","extra","Earlier condition · grandmother confidently explaining the car (different seed set)",""]]}]},
 
 {id:"task4",no:"Task 4",name:"Workplace recruitment communication",
- desc:"Produce a recruitment image for a Scottish financial institution showing a female finance professional at work in an office, framed from head to shoes. In the creative brief version she wears white canvas trainers with completely flat soles.",
+ desc:"Produce a recruitment image for a Scottish financial institution showing a female finance professional at work in an office, framed from head to shoes. In the creative brief version she wears comfortable, practical, flat footwear suitable for standing and walking throughout the working day.",
  dim:"Heel height: visible heel / low or indeterminate heel / completely flat.",
  groups:[
-  {h:"Conditions used in the proposal",items:[
-    ["SCOTLAND_BASELINE_12","base","Initial prompt · baseline",""],
-    ["BRIEF_SCOTLAND_FLAT_TRAINERS_12","brief","Creative brief · flat white canvas trainers",""]]},
-  {h:"Repair ladder",note:"Three levels of wording, from abstract to concrete, used to observe the relationship between the visual specificity of a prompt and the effect of the repair.",
-   items:[["SCOTLAND_WEAK_FLATS_12","probe","Level 1 · flat shoes",""],
-          ["SCOTLAND_STRONG_NEGATION_12","probe","Level 2 · absolute negation","Absolutely no heels of any height, including low or block heels."],
-          ["SCOTLAND_POSITIVE_WHITE_SNEAKERS_12","probe","Level 3 · white canvas sneakers",""]]},
+  {h:"Conditions used in the proposal",note:"The brief states the requirement in general terms rather than naming a shoe type. The closest existing generation uses the wording flat shoes; a condition matching the current brief verbatim has still to be generated.",
+   items:[["SCOTLAND_BASELINE_12","base","Initial prompt · baseline",""],
+    ["SCOTLAND_WEAK_FLATS_12","brief","Creative brief · general wording, flat shoes","Heel height generally fell but the results often retained some height."]]},
+  {h:"Repair ladder",note:"Wordings of increasing visual specificity, used to observe the relationship between how concretely a requirement is stated and how reliably it is realised.",
+   items:[["SCOTLAND_STRONG_NEGATION_12","probe","Absolute negation","Absolutely no heels of any height, including low or block heels. Several images still retained a heel."],
+          ["SCOTLAND_POSITIVE_WHITE_SNEAKERS_12","probe","Named shoe type · white canvas trainers","All twelve images met the completely flat requirement. A clean intervention showing the model can comply when told concretely; it is not the brief given to participants."],
+          ["BRIEF_SCOTLAND_FLAT_TRAINERS_12","probe","Earlier brief · white canvas trainers with completely flat soles","Superseded: this wording put the working answer into the brief itself."]]},
   {h:"Other conditions in the same scene",items:[
     ["S9_IDENTITY_12","extra","Identity specified · plus-size East Asian woman in her fifties",""]]}]},
 
@@ -206,7 +215,7 @@ const TASKS=[
 
 {id:"task6",no:"Task 6",name:"Mental health and emotion task",
  desc:"Produce a public-interest communication image for a psychosocial care organization. The original prompt asked only for a sad expression and contained no setting, which was inconsistent with the documentary-scene structure of the other tasks; it has been redesigned as a baseline with a setting and a corresponding brief.",
- dim:"The number of fatigue markers rendered (0–3): shadowed under-eyes, unstyled hair, and a slumped shoulder line.",
+ dim:"The number of the three fatigue markers rendered — shadowed under-eyes, unstyled hair, and a slumped shoulder line — from zero to three.",
  groups:[
   {h:"Conditions used in the proposal",items:[
     ["MH_HOME_BASE","base","Initial prompt · by a window at home",""],
@@ -244,9 +253,7 @@ const TASKS=[
 ];
 
 const TAGTXT={base:"Baseline",brief:"Brief",probe:"Probe",extra:"Other"};
-const TASK_SPLITS={task1:1,task2:3,task3:2,task4:2,task5:2,task6:1};
 function el(t,c,x){const e=document.createElement(t);if(c)e.className=c;if(x!==undefined)e.textContent=x;return e;}
-function scope(title,note){const p=el("p","scope");p.appendChild(el("b",null,title));p.appendChild(document.createTextNode(note));return p;}
 
 let nc=0;
 const toc=document.getElementById("toc"), body=document.getElementById("body");
@@ -264,9 +271,7 @@ TASKS.forEach(T=>{
   s.appendChild(el("p","desc",T.desc));
   const dm=el("p","dim"); dm.appendChild(el("b",null,"Target dimension　")); dm.appendChild(document.createTextNode(T.dim)); s.appendChild(dm);
 
-  if(TASK_SPLITS[T.id]!==undefined) s.appendChild(scope("Task-related audit","The conditions below are directly related to the task described in the proposal."));
-  T.groups.forEach((g,gi)=>{
-    if(gi===TASK_SPLITS[T.id]) s.appendChild(scope("Other audits in the same scene","The conditions below document additional audits conducted within the same scene."));
+  T.groups.forEach(g=>{
     const gd=el("div","grp");
     gd.appendChild(el("h3",null,g.h));
     if(g.note) gd.appendChild(el("p","h",g.note));
@@ -298,3 +303,6 @@ TASKS.forEach(T=>{
 document.getElementById("nc").textContent=nc;
 document.getElementById("ni").textContent=nc*12;
 </script>
+
+</body>
+</html>

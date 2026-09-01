@@ -218,7 +218,6 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
         <div class="card"><div class="lb">Perceived autonomy optional module, controlled by configuration</div>
           <p class="q">How far do you feel you can control the direction of what is generated</p>
           <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i></div>
-          <div class="anch"><span>1 = No control at all</span><span>7 = Full control</span></div>
           <div class="anch"><span>1 = No control at all</span><span>7 = Full control</span></div></div>
         <div class="row"><span class="btn">Continue</span></div>
       </div>
@@ -232,10 +231,9 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
         <li>Text-to-image experience, field of work, years of experience</li>
         <li>Perceived autonomy, pre-test score (if enabled)</li>
         <li>Time spent on this screen
-      </ul>
+      </li></ul>
       <h4 style="margin-top:12px">Then performed by the system</h4>
-      <ul>
-        </li><li>Whether the participant is in the weaker- or stronger-brief-mismatch group.<b>Assigned per participant; all four tasks use the same condition</b></li>
+      <ul><li>Whether the participant is in the weaker- or stronger-brief-mismatch group.<b>Assigned per participant; all four tasks use the same condition</b></li>
         <li>Which four tasks were drawn, and in what order</li>
         <li>Which tasks were excluded for insufficient familiarity</li>
       </ul>
@@ -251,7 +249,7 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
     <div class="dev">
       <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span>/task/1/brief</span></div>
       <div class="body">
-        <p class="tt">Task 1 of 4 Creative brief</p>
+        <p class="tt">Assigned task 1 of 4　Creative brief</p>
         <div class="card"><div class="lb">Creative brief</div>
           <p class="q" style="margin:0">Produce a recruitment image for a Scottish financial institution. It shows a female finance professional at work in an office, framed full-length from head to shoes. She wears comfortable, practical, flat footwear suitable for standing and walking throughout the working day.</p></div>
         <p class="note">No input controls</p>
@@ -379,7 +377,7 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
         <li><b>The full prompt submitted with this request</b>, stored as complete text, never as a diff</li>
         <li>When Generate was selected</li>
         <li>When the image was returned</li>
-        <li>Generation count incremented</li>
+        <li>Generation attempt count incremented; success and failure counted separately<br><code>generation_attempt_count · generation_success_count · generation_failure_count</code></li>
         <li>The resulting image, stored and identified</li>
         <li>Model version, generation parameters, seed</li>
       </ul>
@@ -471,20 +469,21 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
         <div class="warn"><b>Option order is randomised across participants for all three items; “Not sure” may stay in last position.</b></div>
         <div class="card"><div class="lb">Perceived autonomy (optional module, controlled by configuration)</div>
           <p class="q">How far do you feel you can control the direction of what is generated</p>
-          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i></div></div>
+          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i></div>
+          <div class="anch"><span>1 = No control at all</span><span>7 = Full control</span></div></div>
         <div class="row"><span class="btn">Submit</span></div>
       </div>
     </div>
     <div class="rail">
       <h4>Recorded</h4>
       <ul>
-        <li>Which option was chosen for each of the three items<br><code>bias_knowledge_q1–q3_response</code></li>
-        <li>The order in which options were shown for each item<br><code>bias_knowledge_q1–q3_option_order</code></li>
+        <li>Which option was chosen for each of the three items<br><code>bias_knowledge_q1_response / q2 / q3</code></li>
+        <li>The order in which options were shown for each item<br><code>bias_knowledge_q1_option_order / q2 / q3</code></li>
         <li>Total score<br><code>bias_knowledge_total_score</code></li>
         <li>Perceived autonomy, post-test score (if enabled)</li>
       </ul>
       <h4 style="margin-top:12px">Note</h4>
-      <ul><li>Algorithmic literacy was measured in the pre-test and is not repeated here</li></ul>
+      <ul><li>If included, algorithmic literacy is measured in the pre-test and is not repeated here</li></ul>
     </div>
   </div>
 </section>

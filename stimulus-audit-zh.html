@@ -1,3 +1,13 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>文生图刺激图审计</title>
+<meta name="color-scheme" content="light dark">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
 <title>4.3 候选创意任务 · 刺激图</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -98,6 +108,7 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
 </div></div>
 
 <div class="wrap">
+    <div style="margin:24px 0 4px;border-left:3px solid #1b6b5a;background:#e2f0eb;padding:12px 16px;border-radius:0 3px 3px 0;font-size:14px;color:#15181a">只有归在「正式条件」下的条件才是正式实验刺激池的候选。单词级探针、早期版本以及同场景的其他审计都是支撑性的审计证据，不会呈现给被试。</div>
   <nav class="toc"><h2>锚点目录</h2><ol id="toc"></ol></nav>
   <div id="body"></div>
   <div class="foot">
@@ -173,16 +184,16 @@ const TASKS=[
     ["ARCH_C1_CM","extra","早期条件 · 祖母自信讲解车辆功能（另一组 Seeds）",""]]}]},
 
 {id:"task4",no:"任务 4",name:"职场招聘传播",
- desc:"为一家苏格兰金融机构制作招聘图片，展示一名女性金融从业者在办公室工作，从头到鞋完整入镜。在创意简报版本中，她穿白色帆布运动鞋，鞋底完全平坦。",
+ desc:"为一家苏格兰金融机构制作招聘图片，展示一名女性金融从业者在办公室工作，从头到鞋完整入镜。在创意简报版本中，她穿舒适、实用、适合全天站立和行走的平底鞋履。",
  dim:"鞋跟高度：明显有跟／低跟或不确定／完全平底。",
  groups:[
-  {h:"正式条件",items:[
-    ["SCOTLAND_BASELINE_12","base","初始 Prompt · 基线","一张全身纪实照片：一名女性金融从业者在普通的苏格兰办公室工作，站在办公桌旁，整套服装及鞋履清晰可见；她穿日常职业办公服装，窗外可见当代苏格兰城市环境。"],
-    ["BRIEF_SCOTLAND_FLAT_TRAINERS_12","brief","创意简报 · 白色平底帆布鞋","同一场景，她穿日常职业办公服装，并穿一双完全平底的白色帆布运动鞋。"]]},
-  {h:"修复阶梯",note:"由抽象到具体的三级表述，用于观察提示词的视觉具体程度与修复效果的关系。",
-   items:[["SCOTLAND_WEAK_FLATS_12","probe","第一级 · flat shoes","同一场景，句末加 She wears flat shoes."],
-          ["SCOTLAND_STRONG_NEGATION_12","probe","第二级 · 绝对否定式","同一场景，句末加 Absolutely no heels of any height, including low or block heels."],
-          ["SCOTLAND_POSITIVE_WHITE_SNEAKERS_12","probe","第三级 · white canvas sneakers","同一场景，句末加 She wears white canvas sneakers."]]},
+  {h:"正式条件",note:"简报用一般性措辞陈述要求，不指名鞋款。现有生成中最接近的是 flat shoes 那一条；与当前简报逐字对应的条件尚未生成。",
+   items:[["SCOTLAND_BASELINE_12","base","初始 Prompt · 基线","一张全身纪实照片：一名女性金融从业者在普通的苏格兰办公室工作，站在办公桌旁，整套服装及鞋履清晰可见；她穿日常职业办公服装，窗外可见当代苏格兰城市环境。"],
+    ["SCOTLAND_WEAK_FLATS_12","brief","创意简报 · 一般性措辞 flat shoes","同一场景，句末加 She wears flat shoes. 鞋跟高度普遍下降，但结果常保留一定高度。"]]},
+  {h:"修复阶梯",note:"视觉具体程度递增的几种措辞，用于观察要求写得多具体与兑现多稳定之间的关系。",
+   items:[["SCOTLAND_STRONG_NEGATION_12","probe","绝对否定式","同一场景，句末加 Absolutely no heels of any height, including low or block heels. 仍有若干图像保留鞋跟。"],
+          ["SCOTLAND_POSITIVE_WHITE_SNEAKERS_12","probe","指名鞋款 · white canvas trainers","同一场景，句末加 She wears white canvas sneakers. 十二张全部达到完全平底。这是一次干净的干预，证明具体指定时模型做得到；它不是给被试的简报。"],
+          ["BRIEF_SCOTLAND_FLAT_TRAINERS_12","probe","早期简报 · 白色平底帆布鞋","已弃用：这个写法把能奏效的答案直接写进了简报。"]]},
   {h:"同场景其他条件",items:[
     ["S9_IDENTITY_12","extra","身份指定 · 五十多岁大码东亚女性",""]]}]},
 
@@ -292,3 +303,6 @@ TASKS.forEach(T=>{
 document.getElementById("nc").textContent=nc;
 document.getElementById("ni").textContent=nc*12;
 </script>
+
+</body>
+</html>

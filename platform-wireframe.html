@@ -218,7 +218,6 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
         <div class="card"><div class="lb">感知自主性　可选模块，由配置开关控制</div>
           <p class="q">你在多大程度上觉得自己能控制生成的方向</p>
           <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i></div>
-          <div class="anch"><span>1 = 完全无法控制</span><span>7 = 能够充分控制</span></div>
           <div class="anch"><span>1 = 完全无法控制</span><span>7 = 能够充分控制</span></div></div>
         <div class="row"><span class="btn">继续</span></div>
       </div>
@@ -232,10 +231,9 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
         <li>文生图使用经验、工作领域与从业年限</li>
         <li>感知自主性前测得分（若启用）</li>
         <li>这一整屏的作答时长
-      </ul>
+      </li></ul>
       <h4 style="margin-top:12px">随后由系统完成</h4>
-      <ul>
-        </li><li>分到的是弱不匹配组还是强不匹配组。<b>按人分配，这个人全场四个任务都用同一组</b></li>
+      <ul><li>分到的是弱不匹配组还是强不匹配组。<b>按人分配，这个人全场四个任务都用同一组</b></li>
         <li>抽中了哪四个任务、呈现顺序是什么</li>
         <li>哪些任务因熟悉度不够被排除</li>
       </ul>
@@ -251,7 +249,7 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
     <div class="dev">
       <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span>/task/1/brief</span></div>
       <div class="body">
-        <p class="tt">任务 1 / 4　创意简报</p>
+        <p class="tt">抽到的第 1 个任务（共 4 个）　创意简报</p>
         <div class="card"><div class="lb">创意简报</div>
           <p class="q" style="margin:0">为一家苏格兰金融机构制作招聘图片。画面中是一名女性金融从业者在办公室工作，全身入镜，从头到鞋清晰可见。她穿着舒适、实用、适合全天站立和行走的平底鞋履。</p></div>
         <p class="note">无输入控件</p>
@@ -379,7 +377,7 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
         <li><b>这一次送出去的提示词全文</b>，要存完整文本，不能只存改动的部分</li>
         <li>点下生成按钮的时刻</li>
         <li>图片返回的时刻</li>
-        <li>生成次数加一</li>
+        <li>生成请求次数加一；成功与失败分别计数<br><code>generation_attempt_count · generation_success_count · generation_failure_count</code></li>
         <li>这一次生成出来的图，存下来并编号</li>
         <li>用的模型版本、生成参数、随机种子</li>
       </ul>
@@ -471,20 +469,21 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
         <div class="warn"><b>三题的选项顺序在参与者之间随机打乱，「不确定」可固定放在最后。</b></div>
         <div class="card"><div class="lb">感知自主性（可选模块，由配置开关控制）</div>
           <p class="q">你在多大程度上觉得自己能控制生成的方向</p>
-          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i></div></div>
+          <div class="scale"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i></div>
+          <div class="anch"><span>1 = 完全无法控制</span><span>7 = 能够充分控制</span></div></div>
         <div class="row"><span class="btn">提交</span></div>
       </div>
     </div>
     <div class="rail">
       <h4>后台记录</h4>
       <ul>
-        <li>三道题各自选了哪一项<br><code>bias_knowledge_q1–q3_response</code></li>
-        <li>每题的选项呈现顺序<br><code>bias_knowledge_q1–q3_option_order</code></li>
+        <li>三道题各自选了哪一项<br><code>bias_knowledge_q1_response / q2 / q3</code></li>
+        <li>每题的选项呈现顺序<br><code>bias_knowledge_q1_option_order / q2 / q3</code></li>
         <li>总分<br><code>bias_knowledge_total_score</code></li>
         <li>感知自主性后测得分（若启用）</li>
       </ul>
       <h4 style="margin-top:12px">注意</h4>
-      <ul><li>算法素养已在前测量过，此处不重复</li></ul>
+      <ul><li>若纳入，算法素养在前测测量，此处不重复</li></ul>
     </div>
   </div>
 </section>
